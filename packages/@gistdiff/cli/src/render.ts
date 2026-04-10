@@ -34,14 +34,10 @@ export function renderJson(results: SummarizeResult | SummarizeResult[]): void {
 
 function formatDiagnostics(r: SummarizeResult): string {
   const lines: string[] = [];
-  lines.push(`model:   ${r.model}`);
-  lines.push(`latency: ${r.latencyMs}ms`);
+  lines.push(formatModelLine(r));
+  lines.push(formatLatency(r));
   lines.push(formatTokens(r));
-  if (r.cost) {
-    lines.push(formatCost(r));
-  } else {
-    lines.push("cost:    (pricing unavailable for this model)");
-  }
+  lines.push(formatCostLine(r));
   if (r.reasoningText) {
     const preview = r.reasoningText.replace(/\s+/g, " ").slice(0, 120);
     lines.push(
@@ -49,6 +45,26 @@ function formatDiagnostics(r: SummarizeResult): string {
     );
   }
   return `${gray(lines.join("\n"))}\n`;
+}
+
+function formatModelLine(r: SummarizeResult): string {
+  // Show the actual upstream provider when it differs from what the model
+  // id implies (e.g. anthropic/claude-sonnet-4.6 served via bedrock).
+  const modelProvider = r.model.split("/")[0];
+  if (r.gateway && r.gateway.providerName !== modelProvider) {
+    return `model:   ${r.model} (via ${r.gateway.providerName})`;
+  }
+  return `model:   ${r.model}`;
+}
+
+function formatLatency(r: SummarizeResult): string {
+  if (!r.gateway || r.gateway.providerLatencyMs === 0) {
+    return `latency: ${r.latencyMs}ms`;
+  }
+  // Server-measured provider call time + client wall clock. The delta
+  // between them is gateway overhead + network round-trip.
+  const overhead = r.latencyMs - r.gateway.providerLatencyMs;
+  return `latency: ${r.gateway.providerLatencyMs}ms provider / ${r.latencyMs}ms wall (${overhead}ms gateway+network)`;
 }
 
 function formatTokens(r: SummarizeResult): string {
@@ -67,10 +83,42 @@ function formatTokens(r: SummarizeResult): string {
   return `tokens:  ${parts.join(" ")}`;
 }
 
-function formatCost(r: SummarizeResult): string {
-  const c = r.cost;
-  if (!c) return "";
-  return `cost:    ${formatUsd(c.totalUsd)}  (in ${formatUsd(c.inputUsd)} + cache ${formatUsd(c.cachedInputUsd + c.cacheCreationUsd)} + out ${formatUsd(c.outputUsd)} + think ${formatUsd(c.reasoningUsd)})`;
+/**
+ * Cost line. The headline number is the authoritative total from
+ * `getGenerationInfo` when available; otherwise it's the locally-computed
+ * total. The breakdown is always local — the gateway only returns one
+ * total number, so the breakdown is always estimated.
+ *
+ * If the authoritative and local totals disagree by more than rounding,
+ * we annotate the line so it's visible — that itself is a finding worth
+ * surfacing (and a prompt to update local pricing).
+ */
+function formatCostLine(r: SummarizeResult): string {
+  if (!r.cost && !r.gateway) {
+    return "cost:    (pricing unavailable for this model)";
+  }
+
+  const headline = r.gateway?.totalCostUsd ?? r.cost?.totalUsd ?? 0;
+  const source = r.gateway ? "authoritative" : "estimated";
+
+  let line = `cost:    ${formatUsd(headline)} (${source})`;
+
+  if (r.cost) {
+    const c = r.cost;
+    line += `\n         breakdown: in ${formatUsd(c.inputUsd)} + cache ${formatUsd(c.cachedInputUsd + c.cacheCreationUsd)} + out ${formatUsd(c.outputUsd)} + think ${formatUsd(c.reasoningUsd)}`;
+  }
+
+  // Cross-check: if authoritative and local disagree by more than 1¢ or 5%,
+  // call it out — could indicate stale local pricing or a billing surprise.
+  if (r.gateway && r.cost) {
+    const delta = Math.abs(r.gateway.totalCostUsd - r.cost.totalUsd);
+    const ratio = delta / Math.max(r.gateway.totalCostUsd, 0.0001);
+    if (delta > 0.01 || ratio > 0.05) {
+      line += `\n         ⚠ local estimate ${formatUsd(r.cost.totalUsd)} differs from authoritative by ${formatUsd(delta)}`;
+    }
+  }
+
+  return line;
 }
 
 function formatUsd(n: number): string {

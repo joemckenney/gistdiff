@@ -10,6 +10,7 @@ export {
 export { summarizeDiff } from "./summarize.js";
 export type {
   Cost,
+  GatewayInfo,
   SummarizeOptions,
   SummarizeResult,
   Usage,

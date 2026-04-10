@@ -3,7 +3,12 @@ import { generateText } from "ai";
 import { computeCost } from "./cost.js";
 import { getModelPricing } from "./models.js";
 import { buildSystemPrompt, buildUserPrompt } from "./prompt.js";
-import type { SummarizeOptions, SummarizeResult, Usage } from "./types.js";
+import type {
+  GatewayInfo,
+  SummarizeOptions,
+  SummarizeResult,
+  Usage,
+} from "./types.js";
 
 /**
  * Generate a commit message for a git diff using a gateway model.
@@ -96,6 +101,12 @@ export async function summarizeDiff(
   const pricing = await getModelPricing(opts.model).catch(() => undefined);
   const cost = pricing ? computeCost(usage, pricing) : undefined;
 
+  // Authoritative billing-side info is hidden inside providerMetadata.gateway
+  // on the inline response — see NOTES.md for both the discovery story and
+  // why we don't use the documented `getGenerationInfo` endpoint (it's
+  // currently broken in @ai-sdk/gateway@3.0.95).
+  const gatewayInfo = extractGatewayInfo(result.providerMetadata);
+
   return {
     message: result.text.trim(),
     reasoningText: result.reasoningText,
@@ -103,5 +114,94 @@ export async function summarizeDiff(
     usage,
     cost,
     latencyMs,
+    gateway: gatewayInfo,
   };
+}
+
+/**
+ * Pull authoritative billing data out of `providerMetadata.gateway`.
+ *
+ * The AI SDK types `providerMetadata` loosely (provider-specific data
+ * is heterogeneous), so we have to walk the object defensively. None of
+ * these fields are documented anywhere I could find — discovered by
+ * dumping the metadata at runtime.
+ *
+ * Returns undefined if the gateway shape is missing or malformed.
+ */
+function extractGatewayInfo(
+  providerMetadata: unknown,
+): GatewayInfo | undefined {
+  const gw = readProp(providerMetadata, "gateway");
+  if (!isObject(gw)) return undefined;
+
+  const generationId = readString(gw, "generationId");
+  const cost = readNumberFromString(gw, "cost");
+  const inputCost = readNumberFromString(gw, "inputInferenceCost");
+  const outputCost = readNumberFromString(gw, "outputInferenceCost");
+  if (!generationId || cost === undefined) return undefined;
+
+  // Routing data: which provider actually served the request, and how
+  // long it took on the server side.
+  const routing = readProp(gw, "routing");
+  const providerName = readString(routing, "finalProvider") ?? "unknown";
+  const providerLatencyMs = extractProviderLatency(routing);
+
+  return {
+    generationId,
+    providerName,
+    totalCostUsd: cost,
+    inputCostUsd: inputCost ?? 0,
+    outputCostUsd: outputCost ?? 0,
+    providerLatencyMs,
+  };
+}
+
+/**
+ * Walk routing.modelAttempts[0].providerAttempts[0] to get
+ * `endTime - startTime`, the server-measured provider latency.
+ */
+function extractProviderLatency(routing: unknown): number {
+  const attempts = readProp(routing, "modelAttempts");
+  if (!Array.isArray(attempts) || attempts.length === 0) return 0;
+  const providerAttempts = readProp(attempts[0], "providerAttempts");
+  if (!Array.isArray(providerAttempts) || providerAttempts.length === 0)
+    return 0;
+  const attempt = providerAttempts[0];
+  const start = readNumber(attempt, "startTime");
+  const end = readNumber(attempt, "endTime");
+  if (start === undefined || end === undefined) return 0;
+  return Math.round(end - start);
+}
+
+function isObject(v: unknown): v is Record<string, unknown> {
+  return typeof v === "object" && v !== null;
+}
+
+function readProp(obj: unknown, key: string): unknown {
+  return isObject(obj) ? obj[key] : undefined;
+}
+
+function readString(obj: unknown, key: string): string | undefined {
+  const v = readProp(obj, key);
+  return typeof v === "string" ? v : undefined;
+}
+
+function readNumber(obj: unknown, key: string): number | undefined {
+  const v = readProp(obj, key);
+  return typeof v === "number" ? v : undefined;
+}
+
+/**
+ * Gateway cost fields are stringly-typed (e.g., `"0.004758"`) — same
+ * rough edge as the model catalog pricing. Parse to number here so the
+ * rest of the codebase can stay numeric.
+ */
+function readNumberFromString(obj: unknown, key: string): number | undefined {
+  const v = readProp(obj, key);
+  if (typeof v === "string") {
+    const n = Number.parseFloat(v);
+    return Number.isFinite(n) ? n : undefined;
+  }
+  if (typeof v === "number") return v;
+  return undefined;
 }

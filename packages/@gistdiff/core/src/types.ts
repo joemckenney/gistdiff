@@ -36,6 +36,33 @@ export interface SummarizeOptions {
   reasoning?: boolean;
 }
 
+/**
+ * Authoritative billing-side info extracted from `result.providerMetadata.gateway`.
+ *
+ * Surprising discovery: the gateway already includes cost (broken down),
+ * routing, and per-attempt latencies on the inline response, just buried
+ * inside `providerMetadata.gateway` and entirely undocumented. The
+ * documented `gateway.getGenerationInfo({ id })` lookup turned out to be
+ * (a) unnecessary because the data is inline and (b) currently broken
+ * in `@ai-sdk/gateway@3.0.95` — it throws a generic "Gateway request
+ * failed" error even though the underlying HTTP endpoint returns 200
+ * with valid JSON. See NOTES.md for both rough edges.
+ */
+export interface GatewayInfo {
+  /** The gateway-assigned generation id (`gen_<ulid>`). */
+  generationId: string;
+  /** The actual upstream provider that served the request (e.g. "anthropic"). */
+  providerName: string;
+  /** Authoritative total cost from the gateway (USD), parsed from string. */
+  totalCostUsd: number;
+  /** Authoritative input cost (USD). */
+  inputCostUsd: number;
+  /** Authoritative output cost (USD). */
+  outputCostUsd: number;
+  /** Server-measured provider call duration in milliseconds. */
+  providerLatencyMs: number;
+}
+
 export interface SummarizeResult {
   /** Final commit message text — subject line, optionally followed by body. */
   message: string;
@@ -44,6 +71,8 @@ export interface SummarizeResult {
   model: string;
   usage: Usage;
   cost?: Cost;
-  /** Wall-clock generation time in milliseconds. */
+  /** Wall-clock generation time in milliseconds (client-side). */
   latencyMs: number;
+  /** Authoritative info from `gateway.getGenerationInfo`, if available. */
+  gateway?: GatewayInfo;
 }
