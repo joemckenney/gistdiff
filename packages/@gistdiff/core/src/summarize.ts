@@ -33,15 +33,37 @@ export async function summarizeDiff(
     // covers every provider gistdiff might route to. See NOTES.md for the
     // discoverability story — this lives in the AI Gateway product docs,
     // not the AI SDK docs.
+    //
+    // Reasoning, by contrast, is per-provider in the AI SDK path — there
+    // is no `providerOptions.gateway.reasoning`. The keys below cover the
+    // four providers that ship reasoning models on the gateway today;
+    // unused keys are silently ignored when the routed model belongs to
+    // a different provider, so this is safe to set unconditionally.
     providerOptions: {
       gateway: { caching: "auto" },
       ...(opts.reasoning
         ? {
             anthropic: {
-              thinking: { type: "enabled", budgetTokens: 2048 },
+              // Adaptive thinking: Claude decides when and how much to
+              // think based on the task. Required for Sonnet/Opus 4.6.
+              // Older Claude versions (4.5 and earlier) don't support
+              // adaptive — if a user explicitly passes -m claude-sonnet-4.5
+              // they'll get an error. That's a deliberate trade-off in
+              // favor of using the modern API for the default model.
+              thinking: { type: "adaptive" },
             },
             openai: {
               reasoningEffort: "low",
+            },
+            google: {
+              // Gemini 3+ uses thinkingLevel; 2.5 uses thinkingBudget.
+              // Setting thinkingLevel covers the modern path.
+              thinkingLevel: "low",
+            },
+            bedrock: {
+              // Anthropic models routed via Bedrock. Adaptive for 4.6;
+              // older models would need `{ type: 'enabled', budgetTokens }`.
+              reasoningConfig: { type: "adaptive" },
             },
           }
         : {}),

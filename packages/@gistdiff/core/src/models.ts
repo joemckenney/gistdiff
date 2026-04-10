@@ -1,10 +1,10 @@
 import { gateway } from "@ai-sdk/gateway";
 
 /**
- * Default closed/proprietary model. Anthropic Sonnet handles diffs well
- * and supports prompt caching + extended thinking.
+ * Default closed/proprietary model. Anthropic Sonnet 4.6 handles diffs
+ * well and supports prompt caching + adaptive extended thinking.
  */
-export const DEFAULT_MODEL = "anthropic/claude-sonnet-4.5";
+export const DEFAULT_MODEL = "anthropic/claude-sonnet-4.6";
 
 /**
  * Default open/OSS model used for the `compare` flow. OpenAI's open-weights
