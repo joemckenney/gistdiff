@@ -18,7 +18,8 @@
     "format": "biome format --write ."
   },
   "dependencies": {
-    "@gistdiff/core": "workspace:*"
+    "@gistdiff/core": "workspace:*",
+    "citty": "^0.2.2"
   },
   "devDependencies": {
     "@biomejs/biome": "catalog:",

@@ -13,6 +13,9 @@ out/
 .env
 .env*.local
 
+# Personal notes (presentation/writeup scratchpad)
+NOTES.md
+
 # Logs
 logs/
 *.log
