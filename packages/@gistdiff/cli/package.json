@@ -1,0 +1,28 @@
+{
+  "name": "@gistdiff/cli",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "gistdiff": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsgo",
+    "dev": "tsgo --watch",
+    "clean": "rm -rf dist .turbo",
+    "check": "biome check . && tsgo --noEmit",
+    "lint": "biome check --write .",
+    "format": "biome format --write ."
+  },
+  "dependencies": {
+    "@gistdiff/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@types/node": "^22.15.21",
+    "@typescript/native-preview": "catalog:"
+  }
+}

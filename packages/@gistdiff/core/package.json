@@ -1,0 +1,30 @@
+{
+  "name": "@gistdiff/core",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsgo",
+    "dev": "tsgo --watch",
+    "clean": "rm -rf dist .turbo",
+    "check": "biome check . && tsgo --noEmit",
+    "lint": "biome check --write .",
+    "format": "biome format --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@types/node": "^22.15.21",
+    "@typescript/native-preview": "catalog:"
+  }
+}

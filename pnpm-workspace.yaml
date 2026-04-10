@@ -1,0 +1,10 @@
+packages:
+  - packages/@gistdiff/*
+
+catalog:
+  '@biomejs/biome': 2.2.6
+  '@typescript/native-preview': 7.0.0-dev.20251017.1
+
+onlyBuiltDependencies:
+  - '@biomejs/biome'
+  - esbuild
