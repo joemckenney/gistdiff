@@ -22,29 +22,30 @@ export async function summarizeDiff(
 
   const result = await generateText({
     model: gateway(opts.model),
-    // Using the messages array (rather than `system` + `prompt`) so we can
-    // attach Anthropic prompt-cache markers to the system message. The marker
-    // is provider-specific but harmless to non-Anthropic providers.
     messages: [
-      {
-        role: "system",
-        content: system,
-        providerOptions: {
-          anthropic: { cacheControl: { type: "ephemeral" } },
-        },
-      },
+      { role: "system", content: system },
       { role: "user", content: user },
     ],
-    providerOptions: opts.reasoning
-      ? {
-          anthropic: {
-            thinking: { type: "enabled", budgetTokens: 2048 },
-          },
-          openai: {
-            reasoningEffort: "low",
-          },
-        }
-      : undefined,
+    // `gateway.caching: 'auto'` is the gateway-native, provider-agnostic
+    // caching switch. It inserts a `cache_control` breakpoint for providers
+    // that need explicit markers (Anthropic, MiniMax) and no-ops for
+    // providers that cache implicitly (OpenAI, Google, DeepSeek). One flag
+    // covers every provider gistdiff might route to. See NOTES.md for the
+    // discoverability story — this lives in the AI Gateway product docs,
+    // not the AI SDK docs.
+    providerOptions: {
+      gateway: { caching: "auto" },
+      ...(opts.reasoning
+        ? {
+            anthropic: {
+              thinking: { type: "enabled", budgetTokens: 2048 },
+            },
+            openai: {
+              reasoningEffort: "low",
+            },
+          }
+        : {}),
+    },
   });
 
   const latencyMs = Date.now() - start;
