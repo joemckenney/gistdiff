@@ -1,14 +1,43 @@
 {
-  "name": "@gistdiff/cli",
-  "version": "0.0.0",
+  "name": "gistdiff",
+  "version": "0.1.0",
+  "description": "Generate commit messages from a git diff using the Vercel AI Gateway",
+  "keywords": [
+    "ai",
+    "git",
+    "diff",
+    "commit",
+    "commit-message",
+    "cli",
+    "vercel",
+    "ai-gateway"
+  ],
+  "homepage": "https://github.com/joemckenney/gistdiff#readme",
+  "bugs": {
+    "url": "https://github.com/joemckenney/gistdiff/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joemckenney/gistdiff.git",
+    "directory": "packages/@gistdiff/cli"
+  },
+  "license": "ISC",
+  "author": "Joe McKenney <j.mckenney00@gmail.com>",
   "type": "module",
-  "private": true,
   "bin": {
     "gistdiff": "./dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsgo",
     "dev": "tsgo --watch",
@@ -18,7 +47,7 @@
     "format": "biome format --write ."
   },
   "dependencies": {
-    "@gistdiff/core": "workspace:*",
+    "@gistdiff/core": "workspace:^",
     "citty": "^0.2.2"
   },
   "devDependencies": {

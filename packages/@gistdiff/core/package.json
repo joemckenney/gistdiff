@@ -1,8 +1,28 @@
 {
   "name": "@gistdiff/core",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "Core library powering the gistdiff CLI: summarize git diffs via Vercel AI Gateway",
+  "keywords": [
+    "ai",
+    "git",
+    "diff",
+    "commit",
+    "vercel",
+    "ai-gateway",
+    "ai-sdk"
+  ],
+  "homepage": "https://github.com/joemckenney/gistdiff#readme",
+  "bugs": {
+    "url": "https://github.com/joemckenney/gistdiff/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joemckenney/gistdiff.git",
+    "directory": "packages/@gistdiff/core"
+  },
+  "license": "ISC",
+  "author": "Joe McKenney <j.mckenney00@gmail.com>",
   "type": "module",
-  "private": true,
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -12,8 +32,16 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsgo",
     "dev": "tsgo --watch",

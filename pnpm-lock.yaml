@@ -30,7 +30,7 @@ importers:
   packages/@gistdiff/cli:
     dependencies:
       '@gistdiff/core':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../core
       citty:
         specifier: ^0.2.2

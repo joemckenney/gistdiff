@@ -14,7 +14,7 @@ import { readStdin } from "./stdin.js";
 const main = defineCommand({
   meta: {
     name: "gistdiff",
-    version: "0.0.0",
+    version: "0.1.0",
     description: [
       "Generate commit messages from a git diff.",
       "",
