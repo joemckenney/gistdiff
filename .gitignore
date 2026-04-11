@@ -13,8 +13,8 @@ out/
 .env
 .env*.local
 
-# Personal notes (presentation/writeup scratchpad)
-NOTES.md
+# Personal scratchpad — superseded by NOTES.md (which IS tracked)
+notes.v1.md
 
 # Logs
 logs/
