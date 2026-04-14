@@ -232,8 +232,6 @@ A developer who lands on the gateway landing page never sees the playground or t
 
 ## Stage 1: Choosing
 
-**Friction I think exists here:** Why a gateway at all? When I first encountered the term, my mental model was the legacy "API gateway" framing, i.e. caching and rate limiting. Modern AI gateways are about routing, fallback, multi-tenant attribution, and a unified API across providers. None of that was on the marketing surface I first encountered, and the strongest differentiator I found later (the "no markup, list price" pricing model) was buried in the FAQ.
-
 **Friction I think exists here:** Why a gateway at all? When I first encountered the term, my mental model was the legacy "API gateway" framing, i.e. caching and rate limiting. Modern AI gateways are about **routing and failover across providers**, **cost tracking with per-customer attribution**, **quota and rate-limit headroom** (spreading TPM/RPM pressure across upstreams rather than hitting any one provider's ceiling), and **a unified API** that abstracts provider-specific quirks. 
 
 Some of that was on the marketing surface I first encountered.
