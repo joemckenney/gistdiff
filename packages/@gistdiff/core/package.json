@@ -20,7 +20,7 @@
     "url": "git+https://github.com/joemckenney/gistdiff.git",
     "directory": "packages/@gistdiff/core"
   },
-  "license": "ISC",
+  "license": "MIT",
   "author": "Joe McKenney <j.mckenney00@gmail.com>",
   "type": "module",
   "main": "./dist/index.js",

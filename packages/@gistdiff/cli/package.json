@@ -21,7 +21,7 @@
     "url": "git+https://github.com/joemckenney/gistdiff.git",
     "directory": "packages/@gistdiff/cli"
   },
-  "license": "ISC",
+  "license": "MIT",
   "author": "Joe McKenney <j.mckenney00@gmail.com>",
   "type": "module",
   "bin": {

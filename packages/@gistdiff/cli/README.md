@@ -10,8 +10,6 @@ Pipe any diff to `gistdiff` and get back a conventional-commit-style subject lin
 npm i -g gistdiff
 ```
 
-Requires Node.js 20+.
-
 ## Setup
 
 `gistdiff` talks to the Vercel AI Gateway, so you need an API key.
