@@ -175,7 +175,6 @@ One finding, but it compounds with several others above ([1.2](#12--getgeneratio
 
 - **Tried to do:** Pass an invalid model id (`gistdiff -m bogus/model`) to see what the user experience looks like for a typo.
 - **What went wrong:** Got a ~50-line raw object dump including the full request body, response headers, retry state, and stack traces into the SDK internals. The actually-useful part (`Model 'bogus/model' not found`) was buried inside a nested `responseBody` JSON string. The same pattern applies to every other error class: every consumer of the SDK ends up writing the same 10-15-line wrapper to extract the human-readable message. I wrote one in the gistdiff CLI; the next consumer will write one too.
-- **Compounding effect:** This is the same opaque-output pattern that produces "Invalid error response format: Gateway request failed" in [1.2](#12--getgenerationinfo-is-buggy-3-compounding-bugs). New users hit a wall of internals on their first error, regardless of the underlying cause, and they look identical. The first impression is "the SDK is broken", when in fact every one of these has a clean human-readable underlying error somewhere inside the wrapper.
 - **Proposed solution:**
   - Gateway errors already expose a clean `message` field on the `GatewayError` base class. The SDK's default unhandled-rejection path should *use* it instead of dumping the entire error object.
   - When a `runMain`-style helper in the AI SDK ecosystem encounters a `GatewayError`, it should call `.message` and exit, not dump the object.
