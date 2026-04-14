@@ -1,0 +1,12 @@
+{
+  "name": "@gistdiff/debugging",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Debug-and-explore scripts for inspecting AI Gateway request/response shapes. Each example-N/ directory mirrors an example in EXAMPLES.md.",
+  "type": "module",
+  "dependencies": {
+    "@ai-sdk/gateway": "^3.0.95",
+    "@gistdiff/core": "workspace:*",
+    "ai": "^6.0.157"
+  }
+}

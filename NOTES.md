@@ -1,14 +1,31 @@
 # AI Gateway Rough Edges
 
-A list of issues encountered while building **gistdiff**, a small CLI that uses the Vercel AI Gateway via `@ai-sdk/gateway` to generate commit messages from a `git diff`. Each item follows the format requested in the exercise: what I tried, what went wrong, proposed solution, priority + rationale. Items are grouped by theme; within each theme they are roughly ordered by severity.
+Below is a list of issues encountered while building **gistdiff**, a small CLI that uses the Vercel AI Gateway via `@ai-sdk/gateway` to generate commit messages from a `git diff`. 
 
-This write-up represents my developer journey, so some rough edges are solved upon further reading/debugging, but it seems worth it to share what I ran into.
+Each item follows the format requested in the exercise: what I tried, what went wrong, proposed solution, priority + rationale. Items are grouped by theme; within each theme they are roughly ordered by severity.
+
+This write-up represents my developer journey, so a bunch of issues are solved upon further reading/debugging, but it seems valuable to share my real experience.
 
 ---
 
 ## Theme 1: Per-call cost observability
 
-This was the area I explored because I wanted the CLI to print "this call cost $X" to stderr alongside each commit message.
+This was the area I explored because I wanted the CLI to print a cost breakdown to stderr alongside each commit message e.g. [example #1](./EXAMPLES.md#example-1--trivial-chore-default-subject-only)
+
+
+**stdout:**
+```
+chore: remove .npmrc auto-install-peers setting
+```
+
+**stderr:**
+```
+model:   anthropic/claude-sonnet-4.6
+latency: 1315ms provider / 1875ms wall (560ms gateway+network)
+tokens:  1477 in / 16 out
+cost:    $0.004671 (authoritative)
+         breakdown: in $0.004431 + cache $0 + out $0.00024 + think $0
+```
 
 **Caveat:** this is the *per-call display* slice of the cost story. Upon further reading the gateway has a substantially larger usage-attribution surface via `gateway.getSpendReport` which is probably the more valuable surface for any consumer running this kind of tool as a SaaS with multi-tenant attribution needs.
 
@@ -16,13 +33,17 @@ I didn't exercise that surface in this exercise as the CLI is single-tenant and 
 
 ### 1.1 — Cost is on the inline response, but undocumented and stringly-typed
 
-- **Tried to do:** Read the dollar cost of a generation directly from the `generateText` result so the CLI could display it inline next to the message.
-- **What went wrong:** Both the AI SDK gateway provider docs and the AI Gateway product docs imply you have to call `gateway.getGenerationInfo({ id })` separately to get cost. That's not completely true. It looks like cost is *already* on the inline response at `result.providerMetadata.gateway.cost`, with input/output breakdown (`inputInferenceCost`, `outputInferenceCost`, `marketCost`, etc.) and the generation id. Afaict these fields aren't mentioned in the documentation. They aren't in the `@ai-sdk/gateway` exported types, and they're stringly-typed (`"0.004758"` instead of `0.004758`). I only discovered them by dumping `providerMetadata` at runtime out of frustration with `getGenerationInfo` (see 1.2).
+- **Tried to do:** Read a per-call cost breakdown (input, output, cached, reasoning) from the `generateText` result so the CLI could display it inline next to the message.
+- **What went wrong:** Getting at a cost *breakdown* is surprisingly hard, and the path the docs point you at is the less informative one.
+  - **The documented surface returns a total, not a breakdown.** Both the [AI SDK gateway provider docs](https://ai-sdk.dev/providers/ai-sdk-providers/ai-gateway#generation-lookup) and the [AI Gateway product docs](https://vercel.com/docs/ai-gateway/capabilities/usage#generation-lookup) point at `gateway.getGenerationInfo({ id })` as the way to get cost. But the response only exposes `totalCost` / `upstreamInferenceCost` — there's no per-component split for input vs. output vs. cache vs. reasoning. A consumer trying to explain cost to their users can't do it from this surface.
+  - **The undocumented inline surface has more of a breakdown.** The richer data is already on `result.providerMetadata.gateway` at `{ cost, inferenceCost, inputInferenceCost, outputInferenceCost, marketCost, generationId, routing }`. None of these fields appear in either docs surface, none are in the `@ai-sdk/gateway` exported types, and every cost field is stringly-typed (`"0.004758"` instead of `0.004758`). I only discovered them by inspecting `providerMetadata` at runtime after running into issues w/ `getGenerationInfo` (see [1.2](#12--getgenerationinfo-is-buggy-3-compounding-bugs)).
+  - **Net result:** a user who follows the docs gets a worse answer than one who goes off-script. The breakdown exists, the data is returned on every call, and the public surface just doesn't expose it.
 - **Proposed solution:**
-  - Document `result.providerMetadata.gateway.{cost, inputInferenceCost, outputInferenceCost, marketCost, generationId, routing}` on the AI SDK gateway provider page with example output.
-  - Add typed accessors to `@ai-sdk/gateway` — either expand the metadata schema, or ship a normalized helper like `gateway.extractCost(result)`.
-  - Convert string cost fields to numbers. 
-- **Priority:** **P0.** One of the gateway's more differentiated features is less-discoverable.
+  - Add the per-component cost fields (`inputInferenceCost`, `outputInferenceCost`, and any cache/reasoning equivalents the gateway tracks internally) to `getGenerationInfo`'s response so the documented path is at parity with the inline path.
+  - Document `result.providerMetadata.gateway.{cost, inferenceCost, inputInferenceCost, outputInferenceCost, marketCost, generationId, routing}` on the AI SDK gateway provider page with example output.
+  - Add typed accessors to `@ai-sdk/gateway` — either expand the metadata schema, or ship a normalized helper like `gateway.extractCost(result)` that works against either source.
+  - Convert string cost fields to numbers.
+- **Priority:** **P1.** Cost tracking and breakdown is one of the gateway's more differentiated features and it's the less-discoverable of two paths, with the documented one missing data the undocumented one already returns.
 
 ### 1.2 — `getGenerationInfo` is buggy (~3 compounding bugs)
 
@@ -55,6 +76,26 @@ I didn't exercise that surface in this exercise as the CLI is single-tenant and 
 - **Proposed solution:** Parse to `number` in the SDK before returning. Per-token rates are well within IEEE 754 double precision (the published values have at most 8 significant decimal digits; you'd need 16+ to risk loss). The "JSON precision" defense doesn't apply at these magnitudes. Same theme as the inline cost fields (1.1) — these should be the same fix.
 - **Priority:** **P3.** Easy workaround and not the happy path y'all would likely prescribe. Worth noting: OpenRouter, the closest competitor gateway, returns cost as `number` throughout.
 
+### 1.5 — `getAvailableModels()` stopped working between initial build and a re-test a few days later
+
+- **Context:** This one surfaced while re-running the five examples a few days after capturing EXAMPLES.md, as a sanity check before finalizing the writeup. Nothing on my end had changed — same commit, same `@ai-sdk/gateway@3.0.95`, same lockfile, same Node — but the CLI's local cost breakdown line had silently disappeared from every example, while the authoritative total was still correct.
+- **What I observed:**
+  - Direct call: `gateway.getAvailableModels()` throws `GatewayResponseError: Invalid error response format: Gateway request failed` with `cause: "Invalid JSON response"`.
+  - Raw `fetch` against `https://ai-gateway.vercel.sh/v1/models` returns 200 with valid JSON that parses cleanly (~155KB, ~150 models). So the endpoint is healthy; the SDK's Zod validation against it is what fails.
+  - The CLI's rendered output shape changed from what's in EXAMPLES.md line 54 (breakdown line present, same authoritative total) to what it produces now (breakdown line absent, same authoritative total). The two runs agree on every ingredient that comes from the inline `generateText` response; they disagree only on the catalog-derived breakdown.
+- **Why this is worth flagging:** it's a clean case of a pinned SDK version losing capability without any client-side change. Versioning the package pins *our* code, but the SDK's contract with the live gateway service isn't pinned in the same way — when the server response evolves (new pricing field on one model, a new model type, etc.) a strict Zod schema in the SDK rejects the whole payload, and every consumer of that method starts failing at once. The `/v1/` prefix in the URL is informal; it isn't enforcing a frozen wire format.
+- **Where this compounds with earlier findings:**
+  - Same opaque-wrapper pattern as **1.2** and **5.1**: "Invalid JSON response" is misleading — the JSON parses fine; it's schema validation that fails. The actually-useful detail (which field on which model entry the schema rejected) lives several `.cause` levels deep.
+  - Same silent-degrade pattern the CLI itself contributes to: `getModelPricing(...).catch(() => undefined)` drops the error on the floor, so the breakdown vanishes without a warning. That's a gistdiff choice, not an SDK one — but the SDK didn't give the consumer much to work with either.
+  - Ties back to **1.1**: if consumers could rely on `providerMetadata.gateway.{inputInferenceCost, outputInferenceCost}` as a documented breakdown source, the catalog round-trip wouldn't be load-bearing for this line in the first place, and this regression would have been invisible.
+- **Proposed direction:**
+  - **Loosen response schemas where forward-compat matters.** Zod's `.passthrough()` / `.catchall(z.unknown())` on catalog and metadata schemas would let the SDK accept new fields on new models without rejecting the whole payload. This trades a bit of strictness (unknown fields aren't typed) for resilience against normal server evolution.
+  - **Sharper error messages at boundaries.** When schema validation fails, surface which path inside the payload failed ("pricing.input_cache_read on alibaba/qwen-3-14b: unknown field") rather than a generic "Invalid JSON response". Same fix applies across `getGenerationInfo`, `getAvailableModels`, and any other response-validating call.
+  - **Consider wire-format versioning for the catalog.** Either honor `/v1` as a frozen contract, or let the SDK pin to a dated revision (`/v1?version=2026-04-01`), so client and server evolve on an explicit handshake rather than in lockstep-by-accident.
+  - **Let consumers see drift.** A `warnings` entry when the SDK drops unrecognized fields would let careful consumers surface that their local view is degrading, rather than discovering it on a re-test weeks later.
+- **Priority:** **P1.** Not because the impact on gistdiff is severe — a missing line in stderr diagnostics is cosmetic — but because the structural failure mode generalizes: any method the SDK exposes that validates a server response is vulnerable to the same silent regression on any server change. The fix is a couple of schema decorators, the impact is every current and future consumer.
+- **Reproduction:** `node debugging/example-1/summarize.request.mjs` still succeeds (inline response is unaffected). A direct call to `gateway.getAvailableModels()` reproduces the throw described above.
+
 ---
 
 ## Theme 2: Caching
@@ -69,8 +110,7 @@ Caching is one of the listed deliverables for this exercise and a primary value 
   2. **Second attempt (Sonnet 4.6).** Later, I upgraded the default model from Sonnet 4.5 to Sonnet 4.6 for the speed and adaptive thinking. Same prompt (now ~1450 tokens), same `caching: 'auto'`, same provider and againt caching silently stopped working. Sonnet 4.6 isn't in the documented threshold table at all, but empirically the threshold is *above* 1450 tokens; very likely 4096, matching the rest of the 4.5-era family. So upgrading from a known-good config to the latest model in the same family silently broke the cache demo, with no warning and no field on the response indicating the marker was ignored.
 - **Proposed solution:**
   - **Emit a `CallWarning` when a `cacheControl` marker is set on content below the provider minimum.** The actual numbers should be in the message: *"Cache marker on system message ignored: 1450 tokens, anthropic/claude-haiku-4.5 minimum is 4096."* The SDK already has a warnings array on the response, which could be a good place for this type of information.
-  - **Expose per-model cache thresholds via `getAvailableModels()`** so library code can validate cacheability before sending.
-  - **Medium/Long-term: gateway-side prompt caching** that doesn't depend on provider minimums. The gateway already proxies the request; it could maintain its own prefix cache with consistent semantics across providers.
+  - **Expose per-model cache thresholds via `getAvailableModels()`** so library code can validate cacheability.
 - **Priority:** **P2.** The silent failures were momentarily confusing and reuqired some docs spelunking.
 
 ### 2.2 — The better caching API (`caching: 'auto'`) is hidden in the wrong doc surface
@@ -87,7 +127,7 @@ Caching is one of the listed deliverables for this exercise and a primary value 
 - **Tried to do:** Use `providerOptions.gateway.caching: 'auto'` in TypeScript (per the docs from 2.2).
 - **What went wrong:** It works at runtime, but the explicit `gatewayProviderOptions` Zod schema exported from `@ai-sdk/gateway@3.0.95` doesn't include a `caching` field. TypeScript silently accepts the field because `providerOptions` is loose, but a strictly-typed wrapper would reject it and IDE completion doesn't suggest it.
 - **Proposed solution:** Add `caching: 'auto'` (and any other documented options) to `gatewayProviderOptions`. More broadly, the SDK package types should ship in lockstep with the docs.
-- **Priority:** **P2.** A paper cut, but perhaps an indiciation of drift between the docs and the published SDK.
+- **Priority:** **P2.** A paper cut, but one of a few on the caching-specific journey.
 
 ---
 
@@ -103,8 +143,7 @@ Reasoning is one of the listed deliverables. Two findings, both about how reason
 - **Proposed solution:**
   - **Return `null` for `reasoningTokens` when the upstream provider doesn't expose the breakdown.** `null` means "unavailable", `0` means "definitely none". This is a one-line fix in the Anthropic adapter that would give consumers an honest signal.
   - **Document the distinction prominently** on the Anthropic provider page in the AI SDK docs, which is currently silent on the question.
-  - **Long-term:** advocate to Anthropic to expose thinking token counts in their API. The gateway has standing to push on this in a way individual customers don't, and it's the kind of upstream-facing product work that distinguishes a gateway from a passthrough proxy.
-- **Priority:** **P1.** Not a fixable bug at the upstream layer, but the misleading sentinel value is fixable today. Anthropic reasoning is among the most-used reasoning options in production right now; cost attribution for it is fundamentally opaque in a way no consumer would expect.
+- **Priority:** **P1.** Not a fixable bug at the upstream layer, but the misleading sentinel value is fixable today.
 
 ### 3.2 — The normalized reasoning API only exists on the OpenAI compat surface
 

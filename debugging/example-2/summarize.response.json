@@ -1,0 +1,287 @@
+{
+  "meta": {
+    "example": 2,
+    "model": "anthropic/claude-sonnet-4.6",
+    "description": true,
+    "diffCommit": "1957f54",
+    "wallClockMs": 3606,
+    "capturedAt": "2026-04-14T17:03:26.650Z",
+    "note": "Example 2 from EXAMPLES.md: refactor with -d description body."
+  },
+  "text": "refactor(core): switch to gateway-native caching with `gateway.caching: \"auto\"`\n\nReplaces per-provider `cacheControl` markers on the system message with\na single `gateway: { caching: \"auto\" }` provider option that works\nacross all supported providers (Anthropic, MiniMax, OpenAI, Google,\nDeepSeek) without provider-specific branching.",
+  "finishReason": "stop",
+  "usage": {
+    "inputTokens": 2131,
+    "inputTokenDetails": {
+      "noCacheTokens": 2131,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0
+    },
+    "outputTokens": 95,
+    "outputTokenDetails": {},
+    "totalTokens": 2226,
+    "raw": {
+      "input_tokens": 2131,
+      "output_tokens": 95,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "cachedInputTokens": 0
+  },
+  "warnings": [],
+  "response": {
+    "id": "aitxt-ufhhVO3t3GOn7CLq3gjBZXor",
+    "timestamp": "2026-04-14T17:03:26.647Z",
+    "modelId": "anthropic/claude-sonnet-4.6",
+    "headers": {
+      "access-control-allow-headers": "Content-Type, Authorization, ai-gateway-auth-method, ai-gateway-protocol-version, ai-model-id, ai-language-model-id, ai-language-model-specification-version, ai-image-model-specification-version, ai-embedding-model-specification-version, ai-language-model-streaming, http-referer, x-title, anthropic-beta",
+      "access-control-allow-methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+      "access-control-allow-origin": "*",
+      "cache-control": "public, max-age=0, must-revalidate",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Tue, 14 Apr 2026 17:04:28 GMT",
+      "server": "Vercel",
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+      "x-matched-path": "/v3/ai/language-model",
+      "x-vercel-cache": "MISS",
+      "x-vercel-id": "sfo1::cle1::z7ghq-1776186265299-907758a17738"
+    },
+    "body": {
+      "content": [
+        {
+          "type": "text",
+          "text": "refactor(core): switch to gateway-native caching with `gateway.caching: \"auto\"`\n\nReplaces per-provider `cacheControl` markers on the system message with\na single `gateway: { caching: \"auto\" }` provider option that works\nacross all supported providers (Anthropic, MiniMax, OpenAI, Google,\nDeepSeek) without provider-specific branching."
+        }
+      ],
+      "finishReason": {
+        "unified": "stop",
+        "raw": "end_turn"
+      },
+      "usage": {
+        "inputTokens": {
+          "total": 2131,
+          "noCache": 2131,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "outputTokens": {
+          "total": 95
+        },
+        "raw": {
+          "input_tokens": 2131,
+          "output_tokens": 95,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      },
+      "warnings": [],
+      "providerMetadata": {
+        "anthropic": {
+          "usage": {
+            "input_tokens": 2131,
+            "output_tokens": 95,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 0
+            },
+            "service_tier": "standard",
+            "inference_geo": "global"
+          },
+          "cacheCreationInputTokens": 0,
+          "stopSequence": null,
+          "iterations": null,
+          "container": null,
+          "contextManagement": null
+        },
+        "gateway": {
+          "routing": {
+            "originalModelId": "anthropic/claude-sonnet-4.6",
+            "resolvedProvider": "anthropic",
+            "resolvedProviderApiModelId": "claude-sonnet-4-6",
+            "fallbacksAvailable": [
+              "vertexAnthropic",
+              "bedrock"
+            ],
+            "planningReasoning": "System credentials planned for: anthropic, vertexAnthropic, bedrock. Total execution order: anthropic(system) → vertexAnthropic(system) → bedrock(system)",
+            "canonicalSlug": "anthropic/claude-sonnet-4.6",
+            "finalProvider": "anthropic",
+            "modelAttemptCount": 1,
+            "modelAttempts": [
+              {
+                "modelId": "anthropic:claude-sonnet-4-6",
+                "canonicalSlug": "anthropic/claude-sonnet-4.6",
+                "success": true,
+                "providerAttemptCount": 1,
+                "providerAttempts": [
+                  {
+                    "provider": "anthropic",
+                    "internalModelId": "anthropic:claude-sonnet-4-6",
+                    "providerApiModelId": "claude-sonnet-4-6",
+                    "credentialType": "system",
+                    "success": true,
+                    "startTime": 3386217.266708,
+                    "endTime": 3389383.177276,
+                    "statusCode": 200,
+                    "providerResponseId": "msg_018Jmiugs7mC24MANR1VJkjq"
+                  }
+                ]
+              }
+            ],
+            "totalProviderAttemptCount": 1
+          },
+          "cost": "0.007818",
+          "marketCost": "0.007818",
+          "inferenceCost": "0.007818",
+          "inputInferenceCost": "0.006393",
+          "outputInferenceCost": "0.001425",
+          "enabledZeroDataRetention": false,
+          "enabledDisallowPromptTraining": false,
+          "generationId": "gen_01KP6F73RQA4MPSX7F5Y4G16RD"
+        }
+      }
+    },
+    "messages": [
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "refactor(core): switch to gateway-native caching with `gateway.caching: \"auto\"`\n\nReplaces per-provider `cacheControl` markers on the system message with\na single `gateway: { caching: \"auto\" }` provider option that works\nacross all supported providers (Anthropic, MiniMax, OpenAI, Google,\nDeepSeek) without provider-specific branching."
+          }
+        ]
+      }
+    ]
+  },
+  "request": {
+    "body": {
+      "prompt": [
+        {
+          "role": "system",
+          "content": "You are a senior engineer writing commit messages for a git diff.\n\nOutput a Conventional Commit message:\n  <type>(<optional scope>): <subject>\n\nRules for the subject line:\n- Use one of: feat, fix, refactor, perf, docs, test, build, chore, style, ci.\n- Imperative mood (\"add\", not \"added\" or \"adds\").\n- No trailing period.\n- Keep it under 72 characters.\n- Be specific. Prefer \"fix(auth): reject expired refresh tokens\" over \"fix: bug\".\n\nType selection guide:\n- feat: a new user-visible capability or API surface.\n- fix: corrects incorrect behavior. If the previous behavior was just\n  suboptimal but not wrong, prefer \"refactor\" or \"perf\".\n- refactor: restructures code without changing observable behavior.\n  Renames, file moves, extracting helpers, swapping implementations.\n- perf: a refactor whose purpose is measurable speed/memory improvement.\n- docs: changes only to documentation, comments, or markdown files.\n- test: adds or modifies tests, with no behavior change to production code.\n- build: changes to build system, package manifests, lockfiles, bundlers,\n  compilers, or dependency versions.\n- chore: maintenance with no production impact: gitignore, formatter\n  config, editor config, repo scaffolding.\n- style: whitespace, formatting, semicolons. Almost never used in modern\n  repos because formatters handle this.\n- ci: changes only to CI/CD configuration (GitHub Actions, etc.).\n\nScope selection:\n- Use a scope when the change is clearly localized to one subsystem,\n  package, or file. Examples: \"auth\", \"api\", \"cli\", \"core\", \"db\".\n- Omit the scope when the change touches several unrelated areas, or\n  when the type alone is informative enough.\n- Don't invent a scope just to fill the slot.\n\nWorked examples:\n\nDiff: a single React component file gains a new \"loading\" prop and\nrenders a spinner when it's true.\nSubject: feat(ui): show spinner on Button while loading\n\nDiff: SQL query in user lookup is rewritten to use an index, and a new\nunit test asserts the query plan.\nSubject: perf(users): use index for email lookup\n(NOT \"refactor\" — the intent is measurable speedup.)\n\nDiff: rename helper from `parseDate` to `parseIsoDate` across 14 files,\nno behavioral change.\nSubject: refactor: rename parseDate to parseIsoDate\n(No scope — change is repo-wide.)\n\nDiff: add `@types/node` to devDependencies, no source code touched.\nSubject: build: add @types/node devDependency\n\nDiff: README gets a new \"Quick start\" section.\nSubject: docs: add quick start section to README\n\nDiff: a NullPointerException is fixed in the payment webhook handler\nby null-checking the customer field before dereferencing it.\nSubject: fix(payments): null-check customer in webhook handler\n\nDiff: `.gitignore` gets a new entry for `coverage/`.\nSubject: chore: ignore coverage/ output\n\nDiff: a single file is reformatted by prettier, no other changes.\nSubject: style: apply prettier formatting\n(Rare — usually a formatter runs in CI and this commit doesn't exist.)\n\nMore worked examples covering trickier cases:\n\nDiff: a function is moved from `utils/string.ts` to `utils/format.ts`\nand one caller is updated to import from the new location.\nSubject: refactor: move formatString to utils/format\n(Rename/move dominates; the import update is incidental.)\n\nDiff: a config value's default is changed from 30s to 60s, and the\nREADME is updated to reflect the new default.\nSubject: chore: bump default request timeout to 60s\n(Could be \"fix\" if the old value was causing real bugs; \"chore\" if it's\na tuning decision. Pick based on the likely intent.)\n\nDiff: a feature flag check is removed because the flag has been at 100%\nfor two months. Code paths under the flag are now the only path.\nSubject: refactor: remove dark-mode feature flag\n\nDiff: an existing test that was `.skip`ed is re-enabled and the\nunderlying bug is fixed in the same commit.\nSubject: fix(parser): handle trailing whitespace in headers\n(The fix is the headline. Re-enabling the test is implementation detail.)\n\nDiff: dependency `lodash` is replaced with `es-toolkit` across the\ncodebase. 47 files touched, all imports updated.\nSubject: refactor: replace lodash with es-toolkit\n\nDiff: a JSON schema for an API request body gets a new optional field.\nThe handler accepts the field but ignores it for now (placeholder).\nSubject: feat(api): accept optional `tags` field on POST /items\n(It's a feat because the API surface changed, even if behavior is a no-op\nright now.)\n\nDiff: a CI workflow gains a new job that runs `pnpm typecheck` on PRs.\nSubject: ci: run typecheck on pull requests\n\nDiff: a TypeScript file is converted from CommonJS `require()` to ESM\n`import` syntax, no behavior change.\nSubject: refactor: convert auth.ts to ESM imports\n\nAnti-examples — do NOT do these:\n- \"feat: updates\"           → too vague, \"updates\" is meaningless\n- \"fix: bug fix\"            → tautological\n- \"Added new feature.\"      → past tense, trailing period, no type\n- \"feat(auth): added jwt\"   → past tense\n- \"WIP\"                     → not a commit message\n- \"feat: implement the new user authentication flow with JWT tokens\n   and refresh token rotation and middleware\" → way too long for subject\n\nOutput ONLY the commit message. No preamble, no explanation, no markdown\ncode fences. The first character of your response should be the type.\n\nIf a body would add real information beyond the subject, include one:\n- Blank line after the subject.\n- Wrap at ~72 characters per line.\n- Explain the *what* and *why*, not the *how* (the diff already shows how).\n- Use bullet points only when listing genuinely independent changes.\n\nIf the change is small enough that the subject says it all, omit the body."
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the git diff:\n\ndiff --git a/packages/@gistdiff/core/src/summarize.ts b/packages/@gistdiff/core/src/summarize.ts\nindex 70eefb4..dc9c397 100644\n--- a/packages/@gistdiff/core/src/summarize.ts\n+++ b/packages/@gistdiff/core/src/summarize.ts\n@@ -22,29 +22,30 @@ export async function summarizeDiff(\n \n   const result = await generateText({\n     model: gateway(opts.model),\n-    // Using the messages array (rather than `system` + `prompt`) so we can\n-    // attach Anthropic prompt-cache markers to the system message. The marker\n-    // is provider-specific but harmless to non-Anthropic providers.\n     messages: [\n-      {\n-        role: \"system\",\n-        content: system,\n-        providerOptions: {\n-          anthropic: { cacheControl: { type: \"ephemeral\" } },\n-        },\n-      },\n+      { role: \"system\", content: system },\n       { role: \"user\", content: user },\n     ],\n-    providerOptions: opts.reasoning\n-      ? {\n-          anthropic: {\n-            thinking: { type: \"enabled\", budgetTokens: 2048 },\n-          },\n-          openai: {\n-            reasoningEffort: \"low\",\n-          },\n-        }\n-      : undefined,\n+    // `gateway.caching: 'auto'` is the gateway-native, provider-agnostic\n+    // caching switch. It inserts a `cache_control` breakpoint for providers\n+    // that need explicit markers (Anthropic, MiniMax) and no-ops for\n+    // providers that cache implicitly (OpenAI, Google, DeepSeek). One flag\n+    // covers every provider gistdiff might route to. See NOTES.md for the\n+    // discoverability story — this lives in the AI Gateway product docs,\n+    // not the AI SDK docs.\n+    providerOptions: {\n+      gateway: { caching: \"auto\" },\n+      ...(opts.reasoning\n+        ? {\n+            anthropic: {\n+              thinking: { type: \"enabled\", budgetTokens: 2048 },\n+            },\n+            openai: {\n+              reasoningEffort: \"low\",\n+            },\n+          }\n+        : {}),\n+    },\n   });\n \n   const latencyMs = Date.now() - start;\n"
+            }
+          ]
+        }
+      ],
+      "providerOptions": {
+        "gateway": {
+          "caching": "auto"
+        },
+        "anthropic": {
+          "thinking": {
+            "type": "adaptive"
+          }
+        },
+        "openai": {
+          "reasoningEffort": "low"
+        },
+        "google": {
+          "thinkingLevel": "low"
+        },
+        "bedrock": {
+          "reasoningConfig": {
+            "type": "adaptive"
+          }
+        }
+      },
+      "headers": {
+        "user-agent": "ai/6.0.157"
+      }
+    }
+  },
+  "providerMetadata": {
+    "anthropic": {
+      "usage": {
+        "input_tokens": 2131,
+        "output_tokens": 95,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "cacheCreationInputTokens": 0,
+      "stopSequence": null,
+      "iterations": null,
+      "container": null,
+      "contextManagement": null
+    },
+    "gateway": {
+      "routing": {
+        "originalModelId": "anthropic/claude-sonnet-4.6",
+        "resolvedProvider": "anthropic",
+        "resolvedProviderApiModelId": "claude-sonnet-4-6",
+        "fallbacksAvailable": [
+          "vertexAnthropic",
+          "bedrock"
+        ],
+        "planningReasoning": "System credentials planned for: anthropic, vertexAnthropic, bedrock. Total execution order: anthropic(system) → vertexAnthropic(system) → bedrock(system)",
+        "canonicalSlug": "anthropic/claude-sonnet-4.6",
+        "finalProvider": "anthropic",
+        "modelAttemptCount": 1,
+        "modelAttempts": [
+          {
+            "modelId": "anthropic:claude-sonnet-4-6",
+            "canonicalSlug": "anthropic/claude-sonnet-4.6",
+            "success": true,
+            "providerAttemptCount": 1,
+            "providerAttempts": [
+              {
+                "provider": "anthropic",
+                "internalModelId": "anthropic:claude-sonnet-4-6",
+                "providerApiModelId": "claude-sonnet-4-6",
+                "credentialType": "system",
+                "success": true,
+                "startTime": 3386217.266708,
+                "endTime": 3389383.177276,
+                "statusCode": 200,
+                "providerResponseId": "msg_018Jmiugs7mC24MANR1VJkjq"
+              }
+            ]
+          }
+        ],
+        "totalProviderAttemptCount": 1
+      },
+      "cost": "0.007818",
+      "marketCost": "0.007818",
+      "inferenceCost": "0.007818",
+      "inputInferenceCost": "0.006393",
+      "outputInferenceCost": "0.001425",
+      "enabledZeroDataRetention": false,
+      "enabledDisallowPromptTraining": false,
+      "generationId": "gen_01KP6F73RQA4MPSX7F5Y4G16RD"
+    }
+  },
+  "content": [
+    {
+      "type": "text",
+      "text": "refactor(core): switch to gateway-native caching with `gateway.caching: \"auto\"`\n\nReplaces per-provider `cacheControl` markers on the system message with\na single `gateway: { caching: \"auto\" }` provider option that works\nacross all supported providers (Anthropic, MiniMax, OpenAI, Google,\nDeepSeek) without provider-specific branching."
+    }
+  ]
+}

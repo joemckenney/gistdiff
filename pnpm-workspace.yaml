@@ -1,5 +1,6 @@
 packages:
   - packages/@gistdiff/*
+  - debugging
 
 catalog:
   '@biomejs/biome': 2.2.6

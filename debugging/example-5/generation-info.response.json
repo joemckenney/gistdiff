@@ -1,0 +1,288 @@
+{
+  "meta": {
+    "generationId": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+    "capturedAt": "2026-04-14T17:04:03.170Z",
+    "maxAttempts": 12,
+    "intervalMs": 1000,
+    "note": "gateway.getGenerationInfo() polled until success or exhaustion. See NOTES.md 1.2."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "elapsedMs": 438,
+      "ok": false,
+      "error": {
+        "name": "GatewayResponseError",
+        "message": "Invalid error response format: Gateway request failed",
+        "stack": "GatewayResponseError: Invalid error response format: Gateway request failed\n    at createGatewayErrorFromResponse (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:257:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async asGatewayError (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:412:12)\n    at async GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:701:13)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1",
+        "statusCode": 404,
+        "cause": {
+          "name": "AI_APICallError",
+          "message": "[object Object]",
+          "stack": "AI_APICallError: [object Object]\n    at file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2551:14\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async getFromApi (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:611:28)\n    at async GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:687:25)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1",
+          "url": "https://ai-gateway.vercel.sh/v1/generation?id=gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+          "requestBodyValues": {},
+          "statusCode": 404,
+          "responseHeaders": {
+            "access-control-allow-headers": "Content-Type, Authorization, ai-gateway-auth-method, ai-gateway-protocol-version, ai-model-id, ai-language-model-id, ai-language-model-specification-version, ai-image-model-specification-version, ai-embedding-model-specification-version, ai-language-model-streaming, http-referer, x-title, anthropic-beta",
+            "access-control-allow-methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-encoding": "br",
+            "content-type": "application/json",
+            "date": "Tue, 14 Apr 2026 17:05:00 GMT",
+            "server": "Vercel",
+            "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+            "transfer-encoding": "chunked",
+            "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+            "x-matched-path": "/v1/generation",
+            "x-vercel-cache": "BYPASS",
+            "x-vercel-id": "sfo1::cle1::ww8gt-1776186299869-5755c6d2310b"
+          },
+          "responseBody": "{\"error\":\"Usage event not found\",\"id\":\"gen_01KP6F7SEPNF1XNFQXZWS7Q42T\",\"message\":\"No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T.\"}",
+          "isRetryable": false,
+          "data": {
+            "error": "Usage event not found",
+            "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+            "message": "No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T."
+          }
+        },
+        "type": "response_error",
+        "response": {
+          "error": "Usage event not found",
+          "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+          "message": "No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T."
+        },
+        "validationError": {
+          "name": "AI_TypeValidationError",
+          "message": "Type validation failed: Value: {\"error\":\"Usage event not found\",\"id\":\"gen_01KP6F7SEPNF1XNFQXZWS7Q42T\",\"message\":\"No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T.\"}.\nError message: [\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]",
+          "stack": "AI_TypeValidationError: Type validation failed: Value: {\"error\":\"Usage event not found\",\"id\":\"gen_01KP6F7SEPNF1XNFQXZWS7Q42T\",\"message\":\"No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T.\"}.\nError message: [\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]\n    at _TypeValidationError.wrap (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider@3.0.8/node_modules/@ai-sdk/provider/dist/index.mjs:338:12)\n    at safeValidateTypes (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2223:35)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async createGatewayErrorFromResponse (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:251:23)\n    at async asGatewayError (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:412:12)\n    at async GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:701:13)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1",
+          "cause": {
+            "name": "ZodError",
+            "message": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]",
+            "stack": "ZodError: [\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]\n    at new ZodError (file:///home/joe/code/gistdiff/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/core/core.js:39:39)\n    at Module.<anonymous> (file:///home/joe/code/gistdiff/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/core/parse.js:53:20)\n    at Object.validate (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2178:33)\n    at safeValidateTypes (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2217:39)\n    at createGatewayErrorFromResponse (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:251:29)\n    at asGatewayError (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:412:18)\n    at GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:701:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1"
+          },
+          "value": {
+            "error": "Usage event not found",
+            "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+            "message": "No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T."
+          }
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "elapsedMs": 318,
+      "ok": false,
+      "error": {
+        "name": "GatewayResponseError",
+        "message": "Invalid error response format: Gateway request failed",
+        "stack": "GatewayResponseError: Invalid error response format: Gateway request failed\n    at createGatewayErrorFromResponse (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:257:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async asGatewayError (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:412:12)\n    at async GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:701:13)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1",
+        "statusCode": 404,
+        "cause": {
+          "name": "AI_APICallError",
+          "message": "[object Object]",
+          "stack": "AI_APICallError: [object Object]\n    at file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2551:14\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async getFromApi (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:611:28)\n    at async GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:687:25)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1",
+          "url": "https://ai-gateway.vercel.sh/v1/generation?id=gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+          "requestBodyValues": {},
+          "statusCode": 404,
+          "responseHeaders": {
+            "access-control-allow-headers": "Content-Type, Authorization, ai-gateway-auth-method, ai-gateway-protocol-version, ai-model-id, ai-language-model-id, ai-language-model-specification-version, ai-image-model-specification-version, ai-embedding-model-specification-version, ai-language-model-streaming, http-referer, x-title, anthropic-beta",
+            "access-control-allow-methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-encoding": "br",
+            "content-type": "application/json",
+            "date": "Tue, 14 Apr 2026 17:05:01 GMT",
+            "server": "Vercel",
+            "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+            "transfer-encoding": "chunked",
+            "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+            "x-matched-path": "/v1/generation",
+            "x-vercel-cache": "BYPASS",
+            "x-vercel-id": "sfo1::cle1::z7ghq-1776186301178-d7e6e8f7b876"
+          },
+          "responseBody": "{\"error\":\"Usage event not found\",\"id\":\"gen_01KP6F7SEPNF1XNFQXZWS7Q42T\",\"message\":\"No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T.\"}",
+          "isRetryable": false,
+          "data": {
+            "error": "Usage event not found",
+            "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+            "message": "No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T."
+          }
+        },
+        "type": "response_error",
+        "response": {
+          "error": "Usage event not found",
+          "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+          "message": "No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T."
+        },
+        "validationError": {
+          "name": "AI_TypeValidationError",
+          "message": "Type validation failed: Value: {\"error\":\"Usage event not found\",\"id\":\"gen_01KP6F7SEPNF1XNFQXZWS7Q42T\",\"message\":\"No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T.\"}.\nError message: [\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]",
+          "stack": "AI_TypeValidationError: Type validation failed: Value: {\"error\":\"Usage event not found\",\"id\":\"gen_01KP6F7SEPNF1XNFQXZWS7Q42T\",\"message\":\"No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T.\"}.\nError message: [\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]\n    at _TypeValidationError.wrap (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider@3.0.8/node_modules/@ai-sdk/provider/dist/index.mjs:338:12)\n    at safeValidateTypes (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2223:35)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async createGatewayErrorFromResponse (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:251:23)\n    at async asGatewayError (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:412:12)\n    at async GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:701:13)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1",
+          "cause": {
+            "name": "ZodError",
+            "message": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]",
+            "stack": "ZodError: [\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]\n    at new ZodError (file:///home/joe/code/gistdiff/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/core/core.js:39:39)\n    at Module.<anonymous> (file:///home/joe/code/gistdiff/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/core/parse.js:53:20)\n    at Object.validate (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2178:33)\n    at safeValidateTypes (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2217:39)\n    at createGatewayErrorFromResponse (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:251:29)\n    at asGatewayError (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:412:18)\n    at GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:701:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1"
+          },
+          "value": {
+            "error": "Usage event not found",
+            "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+            "message": "No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T."
+          }
+        }
+      }
+    },
+    {
+      "attempt": 3,
+      "elapsedMs": 183,
+      "ok": false,
+      "error": {
+        "name": "GatewayResponseError",
+        "message": "Invalid error response format: Gateway request failed",
+        "stack": "GatewayResponseError: Invalid error response format: Gateway request failed\n    at createGatewayErrorFromResponse (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:257:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async asGatewayError (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:412:12)\n    at async GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:701:13)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1",
+        "statusCode": 404,
+        "cause": {
+          "name": "AI_APICallError",
+          "message": "[object Object]",
+          "stack": "AI_APICallError: [object Object]\n    at file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2551:14\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async getFromApi (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:611:28)\n    at async GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:687:25)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1",
+          "url": "https://ai-gateway.vercel.sh/v1/generation?id=gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+          "requestBodyValues": {},
+          "statusCode": 404,
+          "responseHeaders": {
+            "access-control-allow-headers": "Content-Type, Authorization, ai-gateway-auth-method, ai-gateway-protocol-version, ai-model-id, ai-language-model-id, ai-language-model-specification-version, ai-image-model-specification-version, ai-embedding-model-specification-version, ai-language-model-streaming, http-referer, x-title, anthropic-beta",
+            "access-control-allow-methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-encoding": "br",
+            "content-type": "application/json",
+            "date": "Tue, 14 Apr 2026 17:05:02 GMT",
+            "server": "Vercel",
+            "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+            "transfer-encoding": "chunked",
+            "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+            "x-matched-path": "/v1/generation",
+            "x-vercel-cache": "BYPASS",
+            "x-vercel-id": "sfo1::cle1::f7d2c-1776186302478-4ae8556f0eea"
+          },
+          "responseBody": "{\"error\":\"Usage event not found\",\"id\":\"gen_01KP6F7SEPNF1XNFQXZWS7Q42T\",\"message\":\"No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T.\"}",
+          "isRetryable": false,
+          "data": {
+            "error": "Usage event not found",
+            "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+            "message": "No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T."
+          }
+        },
+        "type": "response_error",
+        "response": {
+          "error": "Usage event not found",
+          "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+          "message": "No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T."
+        },
+        "validationError": {
+          "name": "AI_TypeValidationError",
+          "message": "Type validation failed: Value: {\"error\":\"Usage event not found\",\"id\":\"gen_01KP6F7SEPNF1XNFQXZWS7Q42T\",\"message\":\"No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T.\"}.\nError message: [\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]",
+          "stack": "AI_TypeValidationError: Type validation failed: Value: {\"error\":\"Usage event not found\",\"id\":\"gen_01KP6F7SEPNF1XNFQXZWS7Q42T\",\"message\":\"No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T.\"}.\nError message: [\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]\n    at _TypeValidationError.wrap (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider@3.0.8/node_modules/@ai-sdk/provider/dist/index.mjs:338:12)\n    at safeValidateTypes (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2223:35)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async createGatewayErrorFromResponse (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:251:23)\n    at async asGatewayError (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:412:12)\n    at async GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:701:13)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1",
+          "cause": {
+            "name": "ZodError",
+            "message": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]",
+            "stack": "ZodError: [\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]\n    at new ZodError (file:///home/joe/code/gistdiff/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/core/core.js:39:39)\n    at Module.<anonymous> (file:///home/joe/code/gistdiff/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/core/parse.js:53:20)\n    at Object.validate (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2178:33)\n    at safeValidateTypes (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2217:39)\n    at createGatewayErrorFromResponse (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:251:29)\n    at asGatewayError (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:412:18)\n    at GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:701:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1"
+          },
+          "value": {
+            "error": "Usage event not found",
+            "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+            "message": "No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T."
+          }
+        }
+      }
+    },
+    {
+      "attempt": 4,
+      "elapsedMs": 231,
+      "ok": false,
+      "error": {
+        "name": "GatewayResponseError",
+        "message": "Invalid error response format: Gateway request failed",
+        "stack": "GatewayResponseError: Invalid error response format: Gateway request failed\n    at createGatewayErrorFromResponse (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:257:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async asGatewayError (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:412:12)\n    at async GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:701:13)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1",
+        "statusCode": 404,
+        "cause": {
+          "name": "AI_APICallError",
+          "message": "[object Object]",
+          "stack": "AI_APICallError: [object Object]\n    at file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2551:14\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async getFromApi (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:611:28)\n    at async GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:687:25)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1",
+          "url": "https://ai-gateway.vercel.sh/v1/generation?id=gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+          "requestBodyValues": {},
+          "statusCode": 404,
+          "responseHeaders": {
+            "access-control-allow-headers": "Content-Type, Authorization, ai-gateway-auth-method, ai-gateway-protocol-version, ai-model-id, ai-language-model-id, ai-language-model-specification-version, ai-image-model-specification-version, ai-embedding-model-specification-version, ai-language-model-streaming, http-referer, x-title, anthropic-beta",
+            "access-control-allow-methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+            "access-control-allow-origin": "*",
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-encoding": "br",
+            "content-type": "application/json",
+            "date": "Tue, 14 Apr 2026 17:05:03 GMT",
+            "server": "Vercel",
+            "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+            "transfer-encoding": "chunked",
+            "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+            "x-matched-path": "/v1/generation",
+            "x-vercel-cache": "BYPASS",
+            "x-vercel-id": "sfo1::cle1::hkb9n-1776186303661-e642cbfce001"
+          },
+          "responseBody": "{\"error\":\"Usage event not found\",\"id\":\"gen_01KP6F7SEPNF1XNFQXZWS7Q42T\",\"message\":\"No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T.\"}",
+          "isRetryable": false,
+          "data": {
+            "error": "Usage event not found",
+            "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+            "message": "No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T."
+          }
+        },
+        "type": "response_error",
+        "response": {
+          "error": "Usage event not found",
+          "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+          "message": "No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T."
+        },
+        "validationError": {
+          "name": "AI_TypeValidationError",
+          "message": "Type validation failed: Value: {\"error\":\"Usage event not found\",\"id\":\"gen_01KP6F7SEPNF1XNFQXZWS7Q42T\",\"message\":\"No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T.\"}.\nError message: [\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]",
+          "stack": "AI_TypeValidationError: Type validation failed: Value: {\"error\":\"Usage event not found\",\"id\":\"gen_01KP6F7SEPNF1XNFQXZWS7Q42T\",\"message\":\"No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T.\"}.\nError message: [\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]\n    at _TypeValidationError.wrap (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider@3.0.8/node_modules/@ai-sdk/provider/dist/index.mjs:338:12)\n    at safeValidateTypes (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2223:35)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async createGatewayErrorFromResponse (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:251:23)\n    at async asGatewayError (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:412:12)\n    at async GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:701:13)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1",
+          "cause": {
+            "name": "ZodError",
+            "message": "[\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]",
+            "stack": "ZodError: [\n  {\n    \"expected\": \"object\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"error\"\n    ],\n    \"message\": \"Invalid input: expected object, received string\"\n  }\n]\n    at new ZodError (file:///home/joe/code/gistdiff/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/core/core.js:39:39)\n    at Module.<anonymous> (file:///home/joe/code/gistdiff/node_modules/.pnpm/zod@4.3.6/node_modules/zod/v4/core/parse.js:53:20)\n    at Object.validate (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2178:33)\n    at safeValidateTypes (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+provider-utils@4.0.23_zod@4.3.6/node_modules/@ai-sdk/provider-utils/dist/index.mjs:2217:39)\n    at createGatewayErrorFromResponse (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:251:29)\n    at asGatewayError (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:412:18)\n    at GatewayGenerationInfoFetcher.getGenerationInfo (file:///home/joe/code/gistdiff/node_modules/.pnpm/@ai-sdk+gateway@3.0.95_zod@4.3.6/node_modules/@ai-sdk/gateway/dist/index.mjs:701:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async runGenerationInfo (file:///home/joe/code/gistdiff/debugging/lib/generation-info.mjs:32:20)\n    at async file:///home/joe/code/gistdiff/debugging/example-5/generation-info.request.mjs:3:1"
+          },
+          "value": {
+            "error": "Usage event not found",
+            "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+            "message": "No usage event found with ID gen_01KP6F7SEPNF1XNFQXZWS7Q42T."
+          }
+        }
+      }
+    },
+    {
+      "attempt": 5,
+      "elapsedMs": 332,
+      "ok": true,
+      "info": {
+        "id": "gen_01KP6F7SEPNF1XNFQXZWS7Q42T",
+        "usage": 0.023625,
+        "model": "anthropic/claude-sonnet-4.6",
+        "streamed": false,
+        "latency": 2361,
+        "totalCost": 0.023625,
+        "upstreamInferenceCost": 0,
+        "createdAt": "2026-04-14T17:04:47.000Z",
+        "isByok": false,
+        "providerName": "anthropic",
+        "finishReason": "stop",
+        "generationTime": 2361,
+        "promptTokens": 7775,
+        "completionTokens": 20,
+        "reasoningTokens": 0,
+        "cachedTokens": 0,
+        "cacheCreationTokens": 0,
+        "billableWebSearchCalls": 0
+      }
+    }
+  ]
+}

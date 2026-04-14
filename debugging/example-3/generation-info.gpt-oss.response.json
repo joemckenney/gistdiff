@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "generationId": "gen_01KP6F78QPYM0T7YR1AHJ7VRDV",
+    "capturedAt": "2026-04-14T17:03:57.118Z",
+    "maxAttempts": 12,
+    "intervalMs": 1000,
+    "note": "gateway.getGenerationInfo() polled until success or exhaustion. See NOTES.md 1.2."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "elapsedMs": 282,
+      "ok": true,
+      "info": {
+        "id": "gen_01KP6F78QPYM0T7YR1AHJ7VRDV",
+        "usage": 0.00073155,
+        "model": "openai/gpt-oss-120b",
+        "streamed": false,
+        "latency": 7662,
+        "totalCost": 0.00073155,
+        "upstreamInferenceCost": 0,
+        "createdAt": "2026-04-14T17:04:30.000Z",
+        "isByok": false,
+        "providerName": "bedrock",
+        "finishReason": "stop",
+        "generationTime": 7662,
+        "promptTokens": 2005,
+        "completionTokens": 718,
+        "reasoningTokens": 0,
+        "cachedTokens": 0,
+        "cacheCreationTokens": 0,
+        "billableWebSearchCalls": 0
+      }
+    }
+  ]
+}

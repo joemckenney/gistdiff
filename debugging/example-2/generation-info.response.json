@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "generationId": "gen_01KP6F73RQA4MPSX7F5Y4G16RD",
+    "capturedAt": "2026-04-14T17:03:56.266Z",
+    "maxAttempts": 12,
+    "intervalMs": 1000,
+    "note": "gateway.getGenerationInfo() polled until success or exhaustion. See NOTES.md 1.2."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "elapsedMs": 380,
+      "ok": true,
+      "info": {
+        "id": "gen_01KP6F73RQA4MPSX7F5Y4G16RD",
+        "usage": 0.007818,
+        "model": "anthropic/claude-sonnet-4.6",
+        "streamed": false,
+        "latency": 3237,
+        "totalCost": 0.007818,
+        "upstreamInferenceCost": 0,
+        "createdAt": "2026-04-14T17:04:25.000Z",
+        "isByok": false,
+        "providerName": "anthropic",
+        "finishReason": "stop",
+        "generationTime": 3237,
+        "promptTokens": 2131,
+        "completionTokens": 95,
+        "reasoningTokens": 0,
+        "cachedTokens": 0,
+        "cacheCreationTokens": 0,
+        "billableWebSearchCalls": 0
+      }
+    }
+  ]
+}

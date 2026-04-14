@@ -1,0 +1,291 @@
+{
+  "meta": {
+    "example": 3,
+    "model": "openai/gpt-oss-120b",
+    "description": false,
+    "diffCommit": "a9d9cbd",
+    "wallClockMs": 7807,
+    "capturedAt": "2026-04-14T17:03:36.176Z",
+    "note": "Example 3 from EXAMPLES.md (compare mode). Model openai/gpt-oss-120b. Sibling file holds the other model's response."
+  },
+  "text": "feat(core): switch to claude-sonnet-4.6 with adaptive reasoning",
+  "reasoningText": "We need to craft a conventional commit message summarizing this diff. Let's understand changes:\n\n- In models.ts, updated DEFAULT_MODEL constant from \"anthropic/claude-sonnet-4.5\" to \"anthropic/claude-sonnet-4.6\". Also comment updated describing Sonnet version.\n\n- In summarize.ts, added extensive comments and expanded providerOptions: added adaptive thinking for anthropic, added google thinkingLevel, added bedrock reasoningConfig adaptive. Also added extra comments. This is a change to default options for summarization, likely adding support for new model version which requires adaptive thinking. This is a functional change: the code now enables adaptive thinking for Anthropic (and maybe Google, Bedrock). Could be considered a \"feat\" because adding support for new model version (Sonnet 4.6) with adaptive thinking. But could also be a \"refactor\" if just internal implementation. However it changes behavior: defaults now include new adaptive config which may affect AI calls. That's a new capability, effectively enabling adaptive reasoning model. So likely feat.\n\nScope? The changes affect core package, specifically summarizing and models. Could scope be \"core\"? Or \"summarize\"? Use \"core\" maybe. Or \"summarize\". The guidance: Use a scope when clearly localized to subsystem. Since summarization flow is the main affected piece. Could be \"summarize\". But also models constant—core maybe. I think \"core\" is broader and appropriate.\n\nSubject: \"feat(core): update default model to claude-sonnet-4.6 and enable adaptive reasoning\". Must be under 72 chars. Let's count: \"feat(core): update default model to claude-sonnet-4.6 and enable adaptive reasoning\". Count: Let's count characters: \"feat(core): \" (12) then \"update default model to claude-sonnet-4.6 and enable adaptive reasoning\". Count the rest: \"update\" (6) + space (1)=7; \"default\" (7) =>14; space=15; \"model\" (5) =>20; space=21; \"to\" (2)=>23; space=24; \"claude-sonnet-4.6\" (19) =>43; space=44; \"and\" (3)=>47; space=48; \"enable\" (6)=>54; space=55; \"adaptive\" (8)=>63; space=64; \"reasoning\" (9)=>73. Total 73 characters plus initial 12 = 85 >72. Need shorter.\n\nWe can shorten: \"feat(core): switch to claude-sonnet-4.6 with adaptive reasoning\". Count: \"feat(core): \" (=12) then \"switch to claude-sonnet-4.6 with adaptive reasoning\". Count characters after: \"switch\"6, space=1 =>7; \"to\"2 =>9; space=1 =>10; \"claude-sonnet-4.6\" 19 =>29; space=1 =>30; \"with\"4 =>34; space1 =>35; \"adaptive\"8 =>43; space1 =>44; \"reasoning\"9 =>53. Total length 12+53=65. Under 72. Good.\n\nThus commit message: \"feat(core): switch to claude-sonnet-4.6 with adaptive reasoning\".",
+  "finishReason": "stop",
+  "usage": {
+    "inputTokens": 2005,
+    "inputTokenDetails": {
+      "noCacheTokens": 2005,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0
+    },
+    "outputTokens": 718,
+    "outputTokenDetails": {
+      "textTokens": 718
+    },
+    "totalTokens": 2723,
+    "raw": {
+      "inputTokens": 2005,
+      "outputTokens": 718,
+      "totalTokens": 2723
+    },
+    "cachedInputTokens": 0
+  },
+  "warnings": [],
+  "response": {
+    "id": "aitxt-EkV8YGZXNKRlH3bO2PFlkcPW",
+    "timestamp": "2026-04-14T17:03:36.176Z",
+    "modelId": "openai/gpt-oss-120b",
+    "headers": {
+      "access-control-allow-headers": "Content-Type, Authorization, ai-gateway-auth-method, ai-gateway-protocol-version, ai-model-id, ai-language-model-id, ai-language-model-specification-version, ai-image-model-specification-version, ai-embedding-model-specification-version, ai-language-model-streaming, http-referer, x-title, anthropic-beta",
+      "access-control-allow-methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+      "access-control-allow-origin": "*",
+      "cache-control": "public, max-age=0, must-revalidate",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Tue, 14 Apr 2026 17:04:38 GMT",
+      "server": "Vercel",
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+      "x-matched-path": "/v3/ai/language-model",
+      "x-vercel-cache": "MISS",
+      "x-vercel-id": "sfo1::cle1::9tvnf-1776186270433-dae6951388e2"
+    },
+    "body": {
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "We need to craft a conventional commit message summarizing this diff. Let's understand changes:\n\n- In models.ts, updated DEFAULT_MODEL constant from \"anthropic/claude-sonnet-4.5\" to \"anthropic/claude-sonnet-4.6\". Also comment updated describing Sonnet version.\n\n- In summarize.ts, added extensive comments and expanded providerOptions: added adaptive thinking for anthropic, added google thinkingLevel, added bedrock reasoningConfig adaptive. Also added extra comments. This is a change to default options for summarization, likely adding support for new model version which requires adaptive thinking. This is a functional change: the code now enables adaptive thinking for Anthropic (and maybe Google, Bedrock). Could be considered a \"feat\" because adding support for new model version (Sonnet 4.6) with adaptive thinking. But could also be a \"refactor\" if just internal implementation. However it changes behavior: defaults now include new adaptive config which may affect AI calls. That's a new capability, effectively enabling adaptive reasoning model. So likely feat.\n\nScope? The changes affect core package, specifically summarizing and models. Could scope be \"core\"? Or \"summarize\"? Use \"core\" maybe. Or \"summarize\". The guidance: Use a scope when clearly localized to subsystem. Since summarization flow is the main affected piece. Could be \"summarize\". But also models constant—core maybe. I think \"core\" is broader and appropriate.\n\nSubject: \"feat(core): update default model to claude-sonnet-4.6 and enable adaptive reasoning\". Must be under 72 chars. Let's count: \"feat(core): update default model to claude-sonnet-4.6 and enable adaptive reasoning\". Count: Let's count characters: \"feat(core): \" (12) then \"update default model to claude-sonnet-4.6 and enable adaptive reasoning\". Count the rest: \"update\" (6) + space (1)=7; \"default\" (7) =>14; space=15; \"model\" (5) =>20; space=21; \"to\" (2)=>23; space=24; \"claude-sonnet-4.6\" (19) =>43; space=44; \"and\" (3)=>47; space=48; \"enable\" (6)=>54; space=55; \"adaptive\" (8)=>63; space=64; \"reasoning\" (9)=>73. Total 73 characters plus initial 12 = 85 >72. Need shorter.\n\nWe can shorten: \"feat(core): switch to claude-sonnet-4.6 with adaptive reasoning\". Count: \"feat(core): \" (=12) then \"switch to claude-sonnet-4.6 with adaptive reasoning\". Count characters after: \"switch\"6, space=1 =>7; \"to\"2 =>9; space=1 =>10; \"claude-sonnet-4.6\" 19 =>29; space=1 =>30; \"with\"4 =>34; space1 =>35; \"adaptive\"8 =>43; space1 =>44; \"reasoning\"9 =>53. Total length 12+53=65. Under 72. Good.\n\nThus commit message: \"feat(core): switch to claude-sonnet-4.6 with adaptive reasoning\"."
+        },
+        {
+          "type": "text",
+          "text": "feat(core): switch to claude-sonnet-4.6 with adaptive reasoning"
+        }
+      ],
+      "finishReason": {
+        "unified": "stop",
+        "raw": "end_turn"
+      },
+      "usage": {
+        "inputTokens": {
+          "total": 2005,
+          "noCache": 2005,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "outputTokens": {
+          "total": 718,
+          "text": 718
+        },
+        "raw": {
+          "inputTokens": 2005,
+          "outputTokens": 718,
+          "totalTokens": 2723
+        }
+      },
+      "warnings": [
+        {
+          "type": "unsupported",
+          "feature": "adaptive thinking",
+          "details": "adaptive thinking type applies only to Anthropic models on Bedrock."
+        }
+      ],
+      "providerMetadata": {
+        "bedrock": {
+          "stopSequence": null
+        },
+        "gateway": {
+          "routing": {
+            "originalModelId": "openai/gpt-oss-120b",
+            "resolvedProvider": "cerebras",
+            "resolvedProviderApiModelId": "gpt-oss-120b",
+            "fallbacksAvailable": [
+              "bedrock",
+              "fireworks",
+              "baseten",
+              "nebius",
+              "parasail",
+              "groq"
+            ],
+            "planningReasoning": "System credentials planned for: cerebras, bedrock, fireworks, baseten, nebius, parasail, groq. Total execution order: cerebras(system) → bedrock(system) → fireworks(system) → baseten(system) → nebius(system) → parasail(system) → groq(system)",
+            "canonicalSlug": "openai/gpt-oss-120b",
+            "finalProvider": "bedrock",
+            "modelAttemptCount": 1,
+            "modelAttempts": [
+              {
+                "modelId": "cerebras:gpt-oss-120b",
+                "canonicalSlug": "openai/gpt-oss-120b",
+                "success": true,
+                "providerAttemptCount": 2,
+                "providerAttempts": [
+                  {
+                    "provider": "cerebras",
+                    "internalModelId": "cerebras:gpt-oss-120b",
+                    "providerApiModelId": "gpt-oss-120b",
+                    "credentialType": "system",
+                    "success": false,
+                    "error": "We're experiencing high traffic right now! Please try again soon.",
+                    "startTime": 3391394.351159,
+                    "endTime": 3391493.004752,
+                    "statusCode": 429
+                  },
+                  {
+                    "provider": "bedrock",
+                    "internalModelId": "bedrock:openai.gpt-oss-120b-1:0",
+                    "providerApiModelId": "openai.gpt-oss-120b-1:0",
+                    "credentialType": "system",
+                    "success": true,
+                    "startTime": 3391514.727234,
+                    "endTime": 3398894.027199,
+                    "statusCode": 200
+                  }
+                ]
+              }
+            ],
+            "totalProviderAttemptCount": 2
+          },
+          "cost": "0.00073155",
+          "marketCost": "0.00073155",
+          "inferenceCost": "0.00073155",
+          "inputInferenceCost": "0.00030075",
+          "outputInferenceCost": "0.0004308",
+          "enabledZeroDataRetention": false,
+          "enabledDisallowPromptTraining": false,
+          "generationId": "gen_01KP6F78QPYM0T7YR1AHJ7VRDV"
+        }
+      }
+    },
+    "messages": [
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "reasoning",
+            "text": "We need to craft a conventional commit message summarizing this diff. Let's understand changes:\n\n- In models.ts, updated DEFAULT_MODEL constant from \"anthropic/claude-sonnet-4.5\" to \"anthropic/claude-sonnet-4.6\". Also comment updated describing Sonnet version.\n\n- In summarize.ts, added extensive comments and expanded providerOptions: added adaptive thinking for anthropic, added google thinkingLevel, added bedrock reasoningConfig adaptive. Also added extra comments. This is a change to default options for summarization, likely adding support for new model version which requires adaptive thinking. This is a functional change: the code now enables adaptive thinking for Anthropic (and maybe Google, Bedrock). Could be considered a \"feat\" because adding support for new model version (Sonnet 4.6) with adaptive thinking. But could also be a \"refactor\" if just internal implementation. However it changes behavior: defaults now include new adaptive config which may affect AI calls. That's a new capability, effectively enabling adaptive reasoning model. So likely feat.\n\nScope? The changes affect core package, specifically summarizing and models. Could scope be \"core\"? Or \"summarize\"? Use \"core\" maybe. Or \"summarize\". The guidance: Use a scope when clearly localized to subsystem. Since summarization flow is the main affected piece. Could be \"summarize\". But also models constant—core maybe. I think \"core\" is broader and appropriate.\n\nSubject: \"feat(core): update default model to claude-sonnet-4.6 and enable adaptive reasoning\". Must be under 72 chars. Let's count: \"feat(core): update default model to claude-sonnet-4.6 and enable adaptive reasoning\". Count: Let's count characters: \"feat(core): \" (12) then \"update default model to claude-sonnet-4.6 and enable adaptive reasoning\". Count the rest: \"update\" (6) + space (1)=7; \"default\" (7) =>14; space=15; \"model\" (5) =>20; space=21; \"to\" (2)=>23; space=24; \"claude-sonnet-4.6\" (19) =>43; space=44; \"and\" (3)=>47; space=48; \"enable\" (6)=>54; space=55; \"adaptive\" (8)=>63; space=64; \"reasoning\" (9)=>73. Total 73 characters plus initial 12 = 85 >72. Need shorter.\n\nWe can shorten: \"feat(core): switch to claude-sonnet-4.6 with adaptive reasoning\". Count: \"feat(core): \" (=12) then \"switch to claude-sonnet-4.6 with adaptive reasoning\". Count characters after: \"switch\"6, space=1 =>7; \"to\"2 =>9; space=1 =>10; \"claude-sonnet-4.6\" 19 =>29; space=1 =>30; \"with\"4 =>34; space1 =>35; \"adaptive\"8 =>43; space1 =>44; \"reasoning\"9 =>53. Total length 12+53=65. Under 72. Good.\n\nThus commit message: \"feat(core): switch to claude-sonnet-4.6 with adaptive reasoning\"."
+          },
+          {
+            "type": "text",
+            "text": "feat(core): switch to claude-sonnet-4.6 with adaptive reasoning"
+          }
+        ]
+      }
+    ]
+  },
+  "request": {
+    "body": {
+      "prompt": [
+        {
+          "role": "system",
+          "content": "You are a senior engineer writing commit messages for a git diff.\n\nOutput a Conventional Commit message:\n  <type>(<optional scope>): <subject>\n\nRules for the subject line:\n- Use one of: feat, fix, refactor, perf, docs, test, build, chore, style, ci.\n- Imperative mood (\"add\", not \"added\" or \"adds\").\n- No trailing period.\n- Keep it under 72 characters.\n- Be specific. Prefer \"fix(auth): reject expired refresh tokens\" over \"fix: bug\".\n\nType selection guide:\n- feat: a new user-visible capability or API surface.\n- fix: corrects incorrect behavior. If the previous behavior was just\n  suboptimal but not wrong, prefer \"refactor\" or \"perf\".\n- refactor: restructures code without changing observable behavior.\n  Renames, file moves, extracting helpers, swapping implementations.\n- perf: a refactor whose purpose is measurable speed/memory improvement.\n- docs: changes only to documentation, comments, or markdown files.\n- test: adds or modifies tests, with no behavior change to production code.\n- build: changes to build system, package manifests, lockfiles, bundlers,\n  compilers, or dependency versions.\n- chore: maintenance with no production impact: gitignore, formatter\n  config, editor config, repo scaffolding.\n- style: whitespace, formatting, semicolons. Almost never used in modern\n  repos because formatters handle this.\n- ci: changes only to CI/CD configuration (GitHub Actions, etc.).\n\nScope selection:\n- Use a scope when the change is clearly localized to one subsystem,\n  package, or file. Examples: \"auth\", \"api\", \"cli\", \"core\", \"db\".\n- Omit the scope when the change touches several unrelated areas, or\n  when the type alone is informative enough.\n- Don't invent a scope just to fill the slot.\n\nWorked examples:\n\nDiff: a single React component file gains a new \"loading\" prop and\nrenders a spinner when it's true.\nSubject: feat(ui): show spinner on Button while loading\n\nDiff: SQL query in user lookup is rewritten to use an index, and a new\nunit test asserts the query plan.\nSubject: perf(users): use index for email lookup\n(NOT \"refactor\" — the intent is measurable speedup.)\n\nDiff: rename helper from `parseDate` to `parseIsoDate` across 14 files,\nno behavioral change.\nSubject: refactor: rename parseDate to parseIsoDate\n(No scope — change is repo-wide.)\n\nDiff: add `@types/node` to devDependencies, no source code touched.\nSubject: build: add @types/node devDependency\n\nDiff: README gets a new \"Quick start\" section.\nSubject: docs: add quick start section to README\n\nDiff: a NullPointerException is fixed in the payment webhook handler\nby null-checking the customer field before dereferencing it.\nSubject: fix(payments): null-check customer in webhook handler\n\nDiff: `.gitignore` gets a new entry for `coverage/`.\nSubject: chore: ignore coverage/ output\n\nDiff: a single file is reformatted by prettier, no other changes.\nSubject: style: apply prettier formatting\n(Rare — usually a formatter runs in CI and this commit doesn't exist.)\n\nMore worked examples covering trickier cases:\n\nDiff: a function is moved from `utils/string.ts` to `utils/format.ts`\nand one caller is updated to import from the new location.\nSubject: refactor: move formatString to utils/format\n(Rename/move dominates; the import update is incidental.)\n\nDiff: a config value's default is changed from 30s to 60s, and the\nREADME is updated to reflect the new default.\nSubject: chore: bump default request timeout to 60s\n(Could be \"fix\" if the old value was causing real bugs; \"chore\" if it's\na tuning decision. Pick based on the likely intent.)\n\nDiff: a feature flag check is removed because the flag has been at 100%\nfor two months. Code paths under the flag are now the only path.\nSubject: refactor: remove dark-mode feature flag\n\nDiff: an existing test that was `.skip`ed is re-enabled and the\nunderlying bug is fixed in the same commit.\nSubject: fix(parser): handle trailing whitespace in headers\n(The fix is the headline. Re-enabling the test is implementation detail.)\n\nDiff: dependency `lodash` is replaced with `es-toolkit` across the\ncodebase. 47 files touched, all imports updated.\nSubject: refactor: replace lodash with es-toolkit\n\nDiff: a JSON schema for an API request body gets a new optional field.\nThe handler accepts the field but ignores it for now (placeholder).\nSubject: feat(api): accept optional `tags` field on POST /items\n(It's a feat because the API surface changed, even if behavior is a no-op\nright now.)\n\nDiff: a CI workflow gains a new job that runs `pnpm typecheck` on PRs.\nSubject: ci: run typecheck on pull requests\n\nDiff: a TypeScript file is converted from CommonJS `require()` to ESM\n`import` syntax, no behavior change.\nSubject: refactor: convert auth.ts to ESM imports\n\nAnti-examples — do NOT do these:\n- \"feat: updates\"           → too vague, \"updates\" is meaningless\n- \"fix: bug fix\"            → tautological\n- \"Added new feature.\"      → past tense, trailing period, no type\n- \"feat(auth): added jwt\"   → past tense\n- \"WIP\"                     → not a commit message\n- \"feat: implement the new user authentication flow with JWT tokens\n   and refresh token rotation and middleware\" → way too long for subject\n\nOutput ONLY the commit message. No preamble, no explanation, no markdown\ncode fences. The first character of your response should be the type."
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the git diff:\n\ndiff --git a/packages/@gistdiff/core/src/models.ts b/packages/@gistdiff/core/src/models.ts\nindex fffc05a..4503fd5 100644\n--- a/packages/@gistdiff/core/src/models.ts\n+++ b/packages/@gistdiff/core/src/models.ts\n@@ -1,10 +1,10 @@\n import { gateway } from \"@ai-sdk/gateway\";\n \n /**\n- * Default closed/proprietary model. Anthropic Sonnet handles diffs well\n- * and supports prompt caching + extended thinking.\n+ * Default closed/proprietary model. Anthropic Sonnet 4.6 handles diffs\n+ * well and supports prompt caching + adaptive extended thinking.\n  */\n-export const DEFAULT_MODEL = \"anthropic/claude-sonnet-4.5\";\n+export const DEFAULT_MODEL = \"anthropic/claude-sonnet-4.6\";\n \n /**\n  * Default open/OSS model used for the `compare` flow. OpenAI's open-weights\ndiff --git a/packages/@gistdiff/core/src/summarize.ts b/packages/@gistdiff/core/src/summarize.ts\nindex dc9c397..f2b1afb 100644\n--- a/packages/@gistdiff/core/src/summarize.ts\n+++ b/packages/@gistdiff/core/src/summarize.ts\n@@ -33,16 +33,38 @@ export async function summarizeDiff(\n     // covers every provider gistdiff might route to. See NOTES.md for the\n     // discoverability story — this lives in the AI Gateway product docs,\n     // not the AI SDK docs.\n+    //\n+    // Reasoning, by contrast, is per-provider in the AI SDK path — there\n+    // is no `providerOptions.gateway.reasoning`. The keys below cover the\n+    // four providers that ship reasoning models on the gateway today;\n+    // unused keys are silently ignored when the routed model belongs to\n+    // a different provider, so this is safe to set unconditionally.\n     providerOptions: {\n       gateway: { caching: \"auto\" },\n       ...(opts.reasoning\n         ? {\n             anthropic: {\n-              thinking: { type: \"enabled\", budgetTokens: 2048 },\n+              // Adaptive thinking: Claude decides when and how much to\n+              // think based on the task. Required for Sonnet/Opus 4.6.\n+              // Older Claude versions (4.5 and earlier) don't support\n+              // adaptive — if a user explicitly passes -m claude-sonnet-4.5\n+              // they'll get an error. That's a deliberate trade-off in\n+              // favor of using the modern API for the default model.\n+              thinking: { type: \"adaptive\" },\n             },\n             openai: {\n               reasoningEffort: \"low\",\n             },\n+            google: {\n+              // Gemini 3+ uses thinkingLevel; 2.5 uses thinkingBudget.\n+              // Setting thinkingLevel covers the modern path.\n+              thinkingLevel: \"low\",\n+            },\n+            bedrock: {\n+              // Anthropic models routed via Bedrock. Adaptive for 4.6;\n+              // older models would need `{ type: 'enabled', budgetTokens }`.\n+              reasoningConfig: { type: \"adaptive\" },\n+            },\n           }\n         : {}),\n     },\n"
+            }
+          ]
+        }
+      ],
+      "providerOptions": {
+        "gateway": {
+          "caching": "auto"
+        },
+        "anthropic": {
+          "thinking": {
+            "type": "adaptive"
+          }
+        },
+        "openai": {
+          "reasoningEffort": "low"
+        },
+        "google": {
+          "thinkingLevel": "low"
+        },
+        "bedrock": {
+          "reasoningConfig": {
+            "type": "adaptive"
+          }
+        }
+      },
+      "headers": {
+        "user-agent": "ai/6.0.157"
+      }
+    }
+  },
+  "providerMetadata": {
+    "bedrock": {
+      "stopSequence": null
+    },
+    "gateway": {
+      "routing": {
+        "originalModelId": "openai/gpt-oss-120b",
+        "resolvedProvider": "cerebras",
+        "resolvedProviderApiModelId": "gpt-oss-120b",
+        "fallbacksAvailable": [
+          "bedrock",
+          "fireworks",
+          "baseten",
+          "nebius",
+          "parasail",
+          "groq"
+        ],
+        "planningReasoning": "System credentials planned for: cerebras, bedrock, fireworks, baseten, nebius, parasail, groq. Total execution order: cerebras(system) → bedrock(system) → fireworks(system) → baseten(system) → nebius(system) → parasail(system) → groq(system)",
+        "canonicalSlug": "openai/gpt-oss-120b",
+        "finalProvider": "bedrock",
+        "modelAttemptCount": 1,
+        "modelAttempts": [
+          {
+            "modelId": "cerebras:gpt-oss-120b",
+            "canonicalSlug": "openai/gpt-oss-120b",
+            "success": true,
+            "providerAttemptCount": 2,
+            "providerAttempts": [
+              {
+                "provider": "cerebras",
+                "internalModelId": "cerebras:gpt-oss-120b",
+                "providerApiModelId": "gpt-oss-120b",
+                "credentialType": "system",
+                "success": false,
+                "error": "We're experiencing high traffic right now! Please try again soon.",
+                "startTime": 3391394.351159,
+                "endTime": 3391493.004752,
+                "statusCode": 429
+              },
+              {
+                "provider": "bedrock",
+                "internalModelId": "bedrock:openai.gpt-oss-120b-1:0",
+                "providerApiModelId": "openai.gpt-oss-120b-1:0",
+                "credentialType": "system",
+                "success": true,
+                "startTime": 3391514.727234,
+                "endTime": 3398894.027199,
+                "statusCode": 200
+              }
+            ]
+          }
+        ],
+        "totalProviderAttemptCount": 2
+      },
+      "cost": "0.00073155",
+      "marketCost": "0.00073155",
+      "inferenceCost": "0.00073155",
+      "inputInferenceCost": "0.00030075",
+      "outputInferenceCost": "0.0004308",
+      "enabledZeroDataRetention": false,
+      "enabledDisallowPromptTraining": false,
+      "generationId": "gen_01KP6F78QPYM0T7YR1AHJ7VRDV"
+    }
+  },
+  "content": [
+    {
+      "type": "reasoning",
+      "text": "We need to craft a conventional commit message summarizing this diff. Let's understand changes:\n\n- In models.ts, updated DEFAULT_MODEL constant from \"anthropic/claude-sonnet-4.5\" to \"anthropic/claude-sonnet-4.6\". Also comment updated describing Sonnet version.\n\n- In summarize.ts, added extensive comments and expanded providerOptions: added adaptive thinking for anthropic, added google thinkingLevel, added bedrock reasoningConfig adaptive. Also added extra comments. This is a change to default options for summarization, likely adding support for new model version which requires adaptive thinking. This is a functional change: the code now enables adaptive thinking for Anthropic (and maybe Google, Bedrock). Could be considered a \"feat\" because adding support for new model version (Sonnet 4.6) with adaptive thinking. But could also be a \"refactor\" if just internal implementation. However it changes behavior: defaults now include new adaptive config which may affect AI calls. That's a new capability, effectively enabling adaptive reasoning model. So likely feat.\n\nScope? The changes affect core package, specifically summarizing and models. Could scope be \"core\"? Or \"summarize\"? Use \"core\" maybe. Or \"summarize\". The guidance: Use a scope when clearly localized to subsystem. Since summarization flow is the main affected piece. Could be \"summarize\". But also models constant—core maybe. I think \"core\" is broader and appropriate.\n\nSubject: \"feat(core): update default model to claude-sonnet-4.6 and enable adaptive reasoning\". Must be under 72 chars. Let's count: \"feat(core): update default model to claude-sonnet-4.6 and enable adaptive reasoning\". Count: Let's count characters: \"feat(core): \" (12) then \"update default model to claude-sonnet-4.6 and enable adaptive reasoning\". Count the rest: \"update\" (6) + space (1)=7; \"default\" (7) =>14; space=15; \"model\" (5) =>20; space=21; \"to\" (2)=>23; space=24; \"claude-sonnet-4.6\" (19) =>43; space=44; \"and\" (3)=>47; space=48; \"enable\" (6)=>54; space=55; \"adaptive\" (8)=>63; space=64; \"reasoning\" (9)=>73. Total 73 characters plus initial 12 = 85 >72. Need shorter.\n\nWe can shorten: \"feat(core): switch to claude-sonnet-4.6 with adaptive reasoning\". Count: \"feat(core): \" (=12) then \"switch to claude-sonnet-4.6 with adaptive reasoning\". Count characters after: \"switch\"6, space=1 =>7; \"to\"2 =>9; space=1 =>10; \"claude-sonnet-4.6\" 19 =>29; space=1 =>30; \"with\"4 =>34; space1 =>35; \"adaptive\"8 =>43; space1 =>44; \"reasoning\"9 =>53. Total length 12+53=65. Under 72. Good.\n\nThus commit message: \"feat(core): switch to claude-sonnet-4.6 with adaptive reasoning\"."
+    },
+    {
+      "type": "text",
+      "text": "feat(core): switch to claude-sonnet-4.6 with adaptive reasoning"
+    }
+  ]
+}

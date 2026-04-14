@@ -27,6 +27,18 @@ importers:
         specifier: ^2.5.8
         version: 2.9.6
 
+  debugging:
+    dependencies:
+      '@ai-sdk/gateway':
+        specifier: ^3.0.95
+        version: 3.0.95(zod@4.3.6)
+      '@gistdiff/core':
+        specifier: workspace:*
+        version: link:../packages/@gistdiff/core
+      ai:
+        specifier: ^6.0.157
+        version: 6.0.157(zod@4.3.6)
+
   packages/@gistdiff/cli:
     dependencies:
       '@gistdiff/core':

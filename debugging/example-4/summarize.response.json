@@ -1,0 +1,315 @@
+{
+  "meta": {
+    "example": 4,
+    "model": "anthropic/claude-sonnet-4.6",
+    "description": true,
+    "diffCommit": "9e435b4",
+    "wallClockMs": 8909,
+    "capturedAt": "2026-04-14T17:03:45.175Z",
+    "note": "Example 4 from EXAMPLES.md: meaty feature with -d description body."
+  },
+  "text": "feat(core): extract authoritative cost and latency from gateway metadata\n\nThe AI SDK embeds billing data (cost breakdown, routing, per-attempt\nlatencies) inside `result.providerMetadata.gateway` on the inline\nresponse, entirely undocumented. This commit surfaces that data:\n\n- New `GatewayInfo` type captures generation id, provider name,\n  authoritative cost (total + input/output), and server-measured\n  provider latency.\n- `summarizeDiff` now populates `SummarizeResult.gateway` by walking\n  `providerMetadata` defensively (all fields are untyped / stringly-typed\n  at the source).\n- CLI diagnostics updated to show the actual upstream provider when it\n  differs from the model id, split provider/wall-clock latency with\n  gateway+network overhead, and an authoritative vs. estimated cost line\n  with a ⚠ annotation when the two totals disagree by >1¢ or >5%.",
+  "reasoningText": "The diff adds a new `GatewayInfo` type and extracts authoritative billing/routing data from the AI SDK's `providerMetadata.gateway`, then surfaces it in the CLI diagnostics output (provider name, latency breakdown, authoritative cost with cross-check warning).",
+  "finishReason": "stop",
+  "usage": {
+    "inputTokens": 5316,
+    "inputTokenDetails": {
+      "noCacheTokens": 5316,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0
+    },
+    "outputTokens": 307,
+    "outputTokenDetails": {},
+    "totalTokens": 5623,
+    "raw": {
+      "input_tokens": 5316,
+      "output_tokens": 307,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "service_tier": "standard",
+      "inference_geo": "global"
+    },
+    "cachedInputTokens": 0
+  },
+  "warnings": [],
+  "response": {
+    "id": "aitxt-75aRvtx47K4QudxNye2Cixpg",
+    "timestamp": "2026-04-14T17:03:45.172Z",
+    "modelId": "anthropic/claude-sonnet-4.6",
+    "headers": {
+      "access-control-allow-headers": "Content-Type, Authorization, ai-gateway-auth-method, ai-gateway-protocol-version, ai-model-id, ai-language-model-id, ai-language-model-specification-version, ai-image-model-specification-version, ai-embedding-model-specification-version, ai-language-model-streaming, http-referer, x-title, anthropic-beta",
+      "access-control-allow-methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+      "access-control-allow-origin": "*",
+      "cache-control": "public, max-age=0, must-revalidate",
+      "content-encoding": "br",
+      "content-type": "application/json",
+      "date": "Tue, 14 Apr 2026 17:04:47 GMT",
+      "server": "Vercel",
+      "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+      "transfer-encoding": "chunked",
+      "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+      "x-matched-path": "/v3/ai/language-model",
+      "x-vercel-cache": "MISS",
+      "x-vercel-id": "sfo1::cle1::bgz4k-1776186278520-a6ee4c891d77"
+    },
+    "body": {
+      "content": [
+        {
+          "type": "reasoning",
+          "text": "The diff adds a new `GatewayInfo` type and extracts authoritative billing/routing data from the AI SDK's `providerMetadata.gateway`, then surfaces it in the CLI diagnostics output (provider name, latency breakdown, authoritative cost with cross-check warning).",
+          "providerMetadata": {
+            "anthropic": {
+              "signature": "EsIDClsIDBgCKkD3LzFq8Uh9CAzKv3zXXnay9dvVEgvdPFJqezGjdFTvj1wiC/Owlho+nO2GaluaraHZCqaXxiK5DPQPrd1jj839MhFjbGF1ZGUtc29ubmV0LTQtNjgAEgyc6uNRFVSeyFZH9pQaDIRQ8BTsUDVp/0hJhSIwJ1x3a5JzdWfLEy0nC2Vsl8YkpqVnFYOZwwRvlkzEQrsCBe15R3rl4M4igU7w0c2+KpQCOYenc5bizbrZTTjFCjU5IAJI+dxrbwXWJYa5Hz+UMor7kLwXQ+FqySE0cdoG3pj15bJuU5AqrAs5PMGn+DZCmX7GPdDAuhnRj++giQRh0JZWdiUWXeZTyLmW2qJcNypaVQY1gTg2DDOHAsFZ72Sz8pIv0uVt0aLQRy0Vj6F7rsa0kxmENPCe0llU9p9d3drZLIdLRc3mAHRKyjkkEokd8BOu/fuZA3XGZV2uNo0lG3TVzuXPUq4t4X5SQJF+NCA9xEy4BG4s29vkaapPXztk/SQ2sYmO3B6X4FDTiu3J6bPkCDXGJ9EgNYXJegf6FOW1t0GrTTgK5TDPKjzwscczsCLpGCrFl36AOcb+b3qqiUcomauGGAE="
+            }
+          }
+        },
+        {
+          "type": "text",
+          "text": "feat(core): extract authoritative cost and latency from gateway metadata\n\nThe AI SDK embeds billing data (cost breakdown, routing, per-attempt\nlatencies) inside `result.providerMetadata.gateway` on the inline\nresponse, entirely undocumented. This commit surfaces that data:\n\n- New `GatewayInfo` type captures generation id, provider name,\n  authoritative cost (total + input/output), and server-measured\n  provider latency.\n- `summarizeDiff` now populates `SummarizeResult.gateway` by walking\n  `providerMetadata` defensively (all fields are untyped / stringly-typed\n  at the source).\n- CLI diagnostics updated to show the actual upstream provider when it\n  differs from the model id, split provider/wall-clock latency with\n  gateway+network overhead, and an authoritative vs. estimated cost line\n  with a ⚠ annotation when the two totals disagree by >1¢ or >5%."
+        }
+      ],
+      "finishReason": {
+        "unified": "stop",
+        "raw": "end_turn"
+      },
+      "usage": {
+        "inputTokens": {
+          "total": 5316,
+          "noCache": 5316,
+          "cacheRead": 0,
+          "cacheWrite": 0
+        },
+        "outputTokens": {
+          "total": 307
+        },
+        "raw": {
+          "input_tokens": 5316,
+          "output_tokens": 307,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      },
+      "warnings": [],
+      "providerMetadata": {
+        "anthropic": {
+          "usage": {
+            "input_tokens": 5316,
+            "output_tokens": 307,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 0
+            },
+            "service_tier": "standard",
+            "inference_geo": "global"
+          },
+          "cacheCreationInputTokens": 0,
+          "stopSequence": null,
+          "iterations": null,
+          "container": null,
+          "contextManagement": null
+        },
+        "gateway": {
+          "routing": {
+            "originalModelId": "anthropic/claude-sonnet-4.6",
+            "resolvedProvider": "anthropic",
+            "resolvedProviderApiModelId": "claude-sonnet-4-6",
+            "fallbacksAvailable": [
+              "vertexAnthropic",
+              "bedrock"
+            ],
+            "planningReasoning": "System credentials planned for: anthropic, vertexAnthropic, bedrock. Total execution order: anthropic(system) → vertexAnthropic(system) → bedrock(system)",
+            "canonicalSlug": "anthropic/claude-sonnet-4.6",
+            "finalProvider": "anthropic",
+            "modelAttemptCount": 1,
+            "modelAttempts": [
+              {
+                "modelId": "anthropic:claude-sonnet-4-6",
+                "canonicalSlug": "anthropic/claude-sonnet-4.6",
+                "success": true,
+                "providerAttemptCount": 1,
+                "providerAttempts": [
+                  {
+                    "provider": "anthropic",
+                    "internalModelId": "anthropic:claude-sonnet-4-6",
+                    "providerApiModelId": "claude-sonnet-4-6",
+                    "credentialType": "system",
+                    "success": true,
+                    "startTime": 207696.635243,
+                    "endTime": 216179.397762,
+                    "statusCode": 200,
+                    "providerResponseId": "msg_01NsKxBasgL6P4ztNtCP3FFK"
+                  }
+                ]
+              }
+            ],
+            "totalProviderAttemptCount": 1
+          },
+          "cost": "0.020553",
+          "marketCost": "0.020553",
+          "inferenceCost": "0.020553",
+          "inputInferenceCost": "0.015948",
+          "outputInferenceCost": "0.004605",
+          "enabledZeroDataRetention": false,
+          "enabledDisallowPromptTraining": false,
+          "generationId": "gen_01KP6F7GPAFKMVQ2MP4D2MQPNR"
+        }
+      }
+    },
+    "messages": [
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "reasoning",
+            "text": "The diff adds a new `GatewayInfo` type and extracts authoritative billing/routing data from the AI SDK's `providerMetadata.gateway`, then surfaces it in the CLI diagnostics output (provider name, latency breakdown, authoritative cost with cross-check warning).",
+            "providerOptions": {
+              "anthropic": {
+                "signature": "EsIDClsIDBgCKkD3LzFq8Uh9CAzKv3zXXnay9dvVEgvdPFJqezGjdFTvj1wiC/Owlho+nO2GaluaraHZCqaXxiK5DPQPrd1jj839MhFjbGF1ZGUtc29ubmV0LTQtNjgAEgyc6uNRFVSeyFZH9pQaDIRQ8BTsUDVp/0hJhSIwJ1x3a5JzdWfLEy0nC2Vsl8YkpqVnFYOZwwRvlkzEQrsCBe15R3rl4M4igU7w0c2+KpQCOYenc5bizbrZTTjFCjU5IAJI+dxrbwXWJYa5Hz+UMor7kLwXQ+FqySE0cdoG3pj15bJuU5AqrAs5PMGn+DZCmX7GPdDAuhnRj++giQRh0JZWdiUWXeZTyLmW2qJcNypaVQY1gTg2DDOHAsFZ72Sz8pIv0uVt0aLQRy0Vj6F7rsa0kxmENPCe0llU9p9d3drZLIdLRc3mAHRKyjkkEokd8BOu/fuZA3XGZV2uNo0lG3TVzuXPUq4t4X5SQJF+NCA9xEy4BG4s29vkaapPXztk/SQ2sYmO3B6X4FDTiu3J6bPkCDXGJ9EgNYXJegf6FOW1t0GrTTgK5TDPKjzwscczsCLpGCrFl36AOcb+b3qqiUcomauGGAE="
+              }
+            }
+          },
+          {
+            "type": "text",
+            "text": "feat(core): extract authoritative cost and latency from gateway metadata\n\nThe AI SDK embeds billing data (cost breakdown, routing, per-attempt\nlatencies) inside `result.providerMetadata.gateway` on the inline\nresponse, entirely undocumented. This commit surfaces that data:\n\n- New `GatewayInfo` type captures generation id, provider name,\n  authoritative cost (total + input/output), and server-measured\n  provider latency.\n- `summarizeDiff` now populates `SummarizeResult.gateway` by walking\n  `providerMetadata` defensively (all fields are untyped / stringly-typed\n  at the source).\n- CLI diagnostics updated to show the actual upstream provider when it\n  differs from the model id, split provider/wall-clock latency with\n  gateway+network overhead, and an authoritative vs. estimated cost line\n  with a ⚠ annotation when the two totals disagree by >1¢ or >5%."
+          }
+        ]
+      }
+    ]
+  },
+  "request": {
+    "body": {
+      "prompt": [
+        {
+          "role": "system",
+          "content": "You are a senior engineer writing commit messages for a git diff.\n\nOutput a Conventional Commit message:\n  <type>(<optional scope>): <subject>\n\nRules for the subject line:\n- Use one of: feat, fix, refactor, perf, docs, test, build, chore, style, ci.\n- Imperative mood (\"add\", not \"added\" or \"adds\").\n- No trailing period.\n- Keep it under 72 characters.\n- Be specific. Prefer \"fix(auth): reject expired refresh tokens\" over \"fix: bug\".\n\nType selection guide:\n- feat: a new user-visible capability or API surface.\n- fix: corrects incorrect behavior. If the previous behavior was just\n  suboptimal but not wrong, prefer \"refactor\" or \"perf\".\n- refactor: restructures code without changing observable behavior.\n  Renames, file moves, extracting helpers, swapping implementations.\n- perf: a refactor whose purpose is measurable speed/memory improvement.\n- docs: changes only to documentation, comments, or markdown files.\n- test: adds or modifies tests, with no behavior change to production code.\n- build: changes to build system, package manifests, lockfiles, bundlers,\n  compilers, or dependency versions.\n- chore: maintenance with no production impact: gitignore, formatter\n  config, editor config, repo scaffolding.\n- style: whitespace, formatting, semicolons. Almost never used in modern\n  repos because formatters handle this.\n- ci: changes only to CI/CD configuration (GitHub Actions, etc.).\n\nScope selection:\n- Use a scope when the change is clearly localized to one subsystem,\n  package, or file. Examples: \"auth\", \"api\", \"cli\", \"core\", \"db\".\n- Omit the scope when the change touches several unrelated areas, or\n  when the type alone is informative enough.\n- Don't invent a scope just to fill the slot.\n\nWorked examples:\n\nDiff: a single React component file gains a new \"loading\" prop and\nrenders a spinner when it's true.\nSubject: feat(ui): show spinner on Button while loading\n\nDiff: SQL query in user lookup is rewritten to use an index, and a new\nunit test asserts the query plan.\nSubject: perf(users): use index for email lookup\n(NOT \"refactor\" — the intent is measurable speedup.)\n\nDiff: rename helper from `parseDate` to `parseIsoDate` across 14 files,\nno behavioral change.\nSubject: refactor: rename parseDate to parseIsoDate\n(No scope — change is repo-wide.)\n\nDiff: add `@types/node` to devDependencies, no source code touched.\nSubject: build: add @types/node devDependency\n\nDiff: README gets a new \"Quick start\" section.\nSubject: docs: add quick start section to README\n\nDiff: a NullPointerException is fixed in the payment webhook handler\nby null-checking the customer field before dereferencing it.\nSubject: fix(payments): null-check customer in webhook handler\n\nDiff: `.gitignore` gets a new entry for `coverage/`.\nSubject: chore: ignore coverage/ output\n\nDiff: a single file is reformatted by prettier, no other changes.\nSubject: style: apply prettier formatting\n(Rare — usually a formatter runs in CI and this commit doesn't exist.)\n\nMore worked examples covering trickier cases:\n\nDiff: a function is moved from `utils/string.ts` to `utils/format.ts`\nand one caller is updated to import from the new location.\nSubject: refactor: move formatString to utils/format\n(Rename/move dominates; the import update is incidental.)\n\nDiff: a config value's default is changed from 30s to 60s, and the\nREADME is updated to reflect the new default.\nSubject: chore: bump default request timeout to 60s\n(Could be \"fix\" if the old value was causing real bugs; \"chore\" if it's\na tuning decision. Pick based on the likely intent.)\n\nDiff: a feature flag check is removed because the flag has been at 100%\nfor two months. Code paths under the flag are now the only path.\nSubject: refactor: remove dark-mode feature flag\n\nDiff: an existing test that was `.skip`ed is re-enabled and the\nunderlying bug is fixed in the same commit.\nSubject: fix(parser): handle trailing whitespace in headers\n(The fix is the headline. Re-enabling the test is implementation detail.)\n\nDiff: dependency `lodash` is replaced with `es-toolkit` across the\ncodebase. 47 files touched, all imports updated.\nSubject: refactor: replace lodash with es-toolkit\n\nDiff: a JSON schema for an API request body gets a new optional field.\nThe handler accepts the field but ignores it for now (placeholder).\nSubject: feat(api): accept optional `tags` field on POST /items\n(It's a feat because the API surface changed, even if behavior is a no-op\nright now.)\n\nDiff: a CI workflow gains a new job that runs `pnpm typecheck` on PRs.\nSubject: ci: run typecheck on pull requests\n\nDiff: a TypeScript file is converted from CommonJS `require()` to ESM\n`import` syntax, no behavior change.\nSubject: refactor: convert auth.ts to ESM imports\n\nAnti-examples — do NOT do these:\n- \"feat: updates\"           → too vague, \"updates\" is meaningless\n- \"fix: bug fix\"            → tautological\n- \"Added new feature.\"      → past tense, trailing period, no type\n- \"feat(auth): added jwt\"   → past tense\n- \"WIP\"                     → not a commit message\n- \"feat: implement the new user authentication flow with JWT tokens\n   and refresh token rotation and middleware\" → way too long for subject\n\nOutput ONLY the commit message. No preamble, no explanation, no markdown\ncode fences. The first character of your response should be the type.\n\nIf a body would add real information beyond the subject, include one:\n- Blank line after the subject.\n- Wrap at ~72 characters per line.\n- Explain the *what* and *why*, not the *how* (the diff already shows how).\n- Use bullet points only when listing genuinely independent changes.\n\nIf the change is small enough that the subject says it all, omit the body."
+        },
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the git diff:\n\ndiff --git a/packages/@gistdiff/cli/src/render.ts b/packages/@gistdiff/cli/src/render.ts\nindex 51cba22..fa6a623 100644\n--- a/packages/@gistdiff/cli/src/render.ts\n+++ b/packages/@gistdiff/cli/src/render.ts\n@@ -34,14 +34,10 @@ export function renderJson(results: SummarizeResult | SummarizeResult[]): void {\n \n function formatDiagnostics(r: SummarizeResult): string {\n   const lines: string[] = [];\n-  lines.push(`model:   ${r.model}`);\n-  lines.push(`latency: ${r.latencyMs}ms`);\n+  lines.push(formatModelLine(r));\n+  lines.push(formatLatency(r));\n   lines.push(formatTokens(r));\n-  if (r.cost) {\n-    lines.push(formatCost(r));\n-  } else {\n-    lines.push(\"cost:    (pricing unavailable for this model)\");\n-  }\n+  lines.push(formatCostLine(r));\n   if (r.reasoningText) {\n     const preview = r.reasoningText.replace(/\\s+/g, \" \").slice(0, 120);\n     lines.push(\n@@ -51,6 +47,26 @@ function formatDiagnostics(r: SummarizeResult): string {\n   return `${gray(lines.join(\"\\n\"))}\\n`;\n }\n \n+function formatModelLine(r: SummarizeResult): string {\n+  // Show the actual upstream provider when it differs from what the model\n+  // id implies (e.g. anthropic/claude-sonnet-4.6 served via bedrock).\n+  const modelProvider = r.model.split(\"/\")[0];\n+  if (r.gateway && r.gateway.providerName !== modelProvider) {\n+    return `model:   ${r.model} (via ${r.gateway.providerName})`;\n+  }\n+  return `model:   ${r.model}`;\n+}\n+\n+function formatLatency(r: SummarizeResult): string {\n+  if (!r.gateway || r.gateway.providerLatencyMs === 0) {\n+    return `latency: ${r.latencyMs}ms`;\n+  }\n+  // Server-measured provider call time + client wall clock. The delta\n+  // between them is gateway overhead + network round-trip.\n+  const overhead = r.latencyMs - r.gateway.providerLatencyMs;\n+  return `latency: ${r.gateway.providerLatencyMs}ms provider / ${r.latencyMs}ms wall (${overhead}ms gateway+network)`;\n+}\n+\n function formatTokens(r: SummarizeResult): string {\n   const u = r.usage;\n   const parts = [`${u.inputTokens} in`];\n@@ -67,10 +83,42 @@ function formatTokens(r: SummarizeResult): string {\n   return `tokens:  ${parts.join(\" \")}`;\n }\n \n-function formatCost(r: SummarizeResult): string {\n-  const c = r.cost;\n-  if (!c) return \"\";\n-  return `cost:    ${formatUsd(c.totalUsd)}  (in ${formatUsd(c.inputUsd)} + cache ${formatUsd(c.cachedInputUsd + c.cacheCreationUsd)} + out ${formatUsd(c.outputUsd)} + think ${formatUsd(c.reasoningUsd)})`;\n+/**\n+ * Cost line. The headline number is the authoritative total from\n+ * `getGenerationInfo` when available; otherwise it's the locally-computed\n+ * total. The breakdown is always local — the gateway only returns one\n+ * total number, so the breakdown is always estimated.\n+ *\n+ * If the authoritative and local totals disagree by more than rounding,\n+ * we annotate the line so it's visible — that itself is a finding worth\n+ * surfacing (and a prompt to update local pricing).\n+ */\n+function formatCostLine(r: SummarizeResult): string {\n+  if (!r.cost && !r.gateway) {\n+    return \"cost:    (pricing unavailable for this model)\";\n+  }\n+\n+  const headline = r.gateway?.totalCostUsd ?? r.cost?.totalUsd ?? 0;\n+  const source = r.gateway ? \"authoritative\" : \"estimated\";\n+\n+  let line = `cost:    ${formatUsd(headline)} (${source})`;\n+\n+  if (r.cost) {\n+    const c = r.cost;\n+    line += `\\n         breakdown: in ${formatUsd(c.inputUsd)} + cache ${formatUsd(c.cachedInputUsd + c.cacheCreationUsd)} + out ${formatUsd(c.outputUsd)} + think ${formatUsd(c.reasoningUsd)}`;\n+  }\n+\n+  // Cross-check: if authoritative and local disagree by more than 1¢ or 5%,\n+  // call it out — could indicate stale local pricing or a billing surprise.\n+  if (r.gateway && r.cost) {\n+    const delta = Math.abs(r.gateway.totalCostUsd - r.cost.totalUsd);\n+    const ratio = delta / Math.max(r.gateway.totalCostUsd, 0.0001);\n+    if (delta > 0.01 || ratio > 0.05) {\n+      line += `\\n         ⚠ local estimate ${formatUsd(r.cost.totalUsd)} differs from authoritative by ${formatUsd(delta)}`;\n+    }\n+  }\n+\n+  return line;\n }\n \n function formatUsd(n: number): string {\ndiff --git a/packages/@gistdiff/core/src/index.ts b/packages/@gistdiff/core/src/index.ts\nindex a7fb930..3d04a4a 100644\n--- a/packages/@gistdiff/core/src/index.ts\n+++ b/packages/@gistdiff/core/src/index.ts\n@@ -10,6 +10,7 @@ export {\n export { summarizeDiff } from \"./summarize.js\";\n export type {\n   Cost,\n+  GatewayInfo,\n   SummarizeOptions,\n   SummarizeResult,\n   Usage,\ndiff --git a/packages/@gistdiff/core/src/summarize.ts b/packages/@gistdiff/core/src/summarize.ts\nindex f2b1afb..7820383 100644\n--- a/packages/@gistdiff/core/src/summarize.ts\n+++ b/packages/@gistdiff/core/src/summarize.ts\n@@ -3,7 +3,12 @@ import { generateText } from \"ai\";\n import { computeCost } from \"./cost.js\";\n import { getModelPricing } from \"./models.js\";\n import { buildSystemPrompt, buildUserPrompt } from \"./prompt.js\";\n-import type { SummarizeOptions, SummarizeResult, Usage } from \"./types.js\";\n+import type {\n+  GatewayInfo,\n+  SummarizeOptions,\n+  SummarizeResult,\n+  Usage,\n+} from \"./types.js\";\n \n /**\n  * Generate a commit message for a git diff using a gateway model.\n@@ -96,6 +101,12 @@ export async function summarizeDiff(\n   const pricing = await getModelPricing(opts.model).catch(() => undefined);\n   const cost = pricing ? computeCost(usage, pricing) : undefined;\n \n+  // Authoritative billing-side info is hidden inside providerMetadata.gateway\n+  // on the inline response — see NOTES.md for both the discovery story and\n+  // why we don't use the documented `getGenerationInfo` endpoint (it's\n+  // currently broken in @ai-sdk/gateway@3.0.95).\n+  const gatewayInfo = extractGatewayInfo(result.providerMetadata);\n+\n   return {\n     message: result.text.trim(),\n     reasoningText: result.reasoningText,\n@@ -103,5 +114,94 @@ export async function summarizeDiff(\n     usage,\n     cost,\n     latencyMs,\n+    gateway: gatewayInfo,\n   };\n }\n+\n+/**\n+ * Pull authoritative billing data out of `providerMetadata.gateway`.\n+ *\n+ * The AI SDK types `providerMetadata` loosely (provider-specific data\n+ * is heterogeneous), so we have to walk the object defensively. None of\n+ * these fields are documented anywhere I could find — discovered by\n+ * dumping the metadata at runtime.\n+ *\n+ * Returns undefined if the gateway shape is missing or malformed.\n+ */\n+function extractGatewayInfo(\n+  providerMetadata: unknown,\n+): GatewayInfo | undefined {\n+  const gw = readProp(providerMetadata, \"gateway\");\n+  if (!isObject(gw)) return undefined;\n+\n+  const generationId = readString(gw, \"generationId\");\n+  const cost = readNumberFromString(gw, \"cost\");\n+  const inputCost = readNumberFromString(gw, \"inputInferenceCost\");\n+  const outputCost = readNumberFromString(gw, \"outputInferenceCost\");\n+  if (!generationId || cost === undefined) return undefined;\n+\n+  // Routing data: which provider actually served the request, and how\n+  // long it took on the server side.\n+  const routing = readProp(gw, \"routing\");\n+  const providerName = readString(routing, \"finalProvider\") ?? \"unknown\";\n+  const providerLatencyMs = extractProviderLatency(routing);\n+\n+  return {\n+    generationId,\n+    providerName,\n+    totalCostUsd: cost,\n+    inputCostUsd: inputCost ?? 0,\n+    outputCostUsd: outputCost ?? 0,\n+    providerLatencyMs,\n+  };\n+}\n+\n+/**\n+ * Walk routing.modelAttempts[0].providerAttempts[0] to get\n+ * `endTime - startTime`, the server-measured provider latency.\n+ */\n+function extractProviderLatency(routing: unknown): number {\n+  const attempts = readProp(routing, \"modelAttempts\");\n+  if (!Array.isArray(attempts) || attempts.length === 0) return 0;\n+  const providerAttempts = readProp(attempts[0], \"providerAttempts\");\n+  if (!Array.isArray(providerAttempts) || providerAttempts.length === 0)\n+    return 0;\n+  const attempt = providerAttempts[0];\n+  const start = readNumber(attempt, \"startTime\");\n+  const end = readNumber(attempt, \"endTime\");\n+  if (start === undefined || end === undefined) return 0;\n+  return Math.round(end - start);\n+}\n+\n+function isObject(v: unknown): v is Record<string, unknown> {\n+  return typeof v === \"object\" && v !== null;\n+}\n+\n+function readProp(obj: unknown, key: string): unknown {\n+  return isObject(obj) ? obj[key] : undefined;\n+}\n+\n+function readString(obj: unknown, key: string): string | undefined {\n+  const v = readProp(obj, key);\n+  return typeof v === \"string\" ? v : undefined;\n+}\n+\n+function readNumber(obj: unknown, key: string): number | undefined {\n+  const v = readProp(obj, key);\n+  return typeof v === \"number\" ? v : undefined;\n+}\n+\n+/**\n+ * Gateway cost fields are stringly-typed (e.g., `\"0.004758\"`) — same\n+ * rough edge as the model catalog pricing. Parse to number here so the\n+ * rest of the codebase can stay numeric.\n+ */\n+function readNumberFromString(obj: unknown, key: string): number | undefined {\n+  const v = readProp(obj, key);\n+  if (typeof v === \"string\") {\n+    const n = Number.parseFloat(v);\n+    return Number.isFinite(n) ? n : undefined;\n+  }\n+  if (typeof v === \"number\") return v;\n+  return undefined;\n+}\ndiff --git a/packages/@gistdiff/core/src/types.ts b/packages/@gistdiff/core/src/types.ts\nindex d510c10..178ec85 100644\n--- a/packages/@gistdiff/core/src/types.ts\n+++ b/packages/@gistdiff/core/src/types.ts\n@@ -36,6 +36,33 @@ export interface SummarizeOptions {\n   reasoning?: boolean;\n }\n \n+/**\n+ * Authoritative billing-side info extracted from `result.providerMetadata.gateway`.\n+ *\n+ * Surprising discovery: the gateway already includes cost (broken down),\n+ * routing, and per-attempt latencies on the inline response, just buried\n+ * inside `providerMetadata.gateway` and entirely undocumented. The\n+ * documented `gateway.getGenerationInfo({ id })` lookup turned out to be\n+ * (a) unnecessary because the data is inline and (b) currently broken\n+ * in `@ai-sdk/gateway@3.0.95` — it throws a generic \"Gateway request\n+ * failed\" error even though the underlying HTTP endpoint returns 200\n+ * with valid JSON. See NOTES.md for both rough edges.\n+ */\n+export interface GatewayInfo {\n+  /** The gateway-assigned generation id (`gen_<ulid>`). */\n+  generationId: string;\n+  /** The actual upstream provider that served the request (e.g. \"anthropic\"). */\n+  providerName: string;\n+  /** Authoritative total cost from the gateway (USD), parsed from string. */\n+  totalCostUsd: number;\n+  /** Authoritative input cost (USD). */\n+  inputCostUsd: number;\n+  /** Authoritative output cost (USD). */\n+  outputCostUsd: number;\n+  /** Server-measured provider call duration in milliseconds. */\n+  providerLatencyMs: number;\n+}\n+\n export interface SummarizeResult {\n   /** Final commit message text — subject line, optionally followed by body. */\n   message: string;\n@@ -44,6 +71,8 @@ export interface SummarizeResult {\n   model: string;\n   usage: Usage;\n   cost?: Cost;\n-  /** Wall-clock generation time in milliseconds. */\n+  /** Wall-clock generation time in milliseconds (client-side). */\n   latencyMs: number;\n+  /** Authoritative info from `gateway.getGenerationInfo`, if available. */\n+  gateway?: GatewayInfo;\n }\n"
+            }
+          ]
+        }
+      ],
+      "providerOptions": {
+        "gateway": {
+          "caching": "auto"
+        },
+        "anthropic": {
+          "thinking": {
+            "type": "adaptive"
+          }
+        },
+        "openai": {
+          "reasoningEffort": "low"
+        },
+        "google": {
+          "thinkingLevel": "low"
+        },
+        "bedrock": {
+          "reasoningConfig": {
+            "type": "adaptive"
+          }
+        }
+      },
+      "headers": {
+        "user-agent": "ai/6.0.157"
+      }
+    }
+  },
+  "providerMetadata": {
+    "anthropic": {
+      "usage": {
+        "input_tokens": 5316,
+        "output_tokens": 307,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "cacheCreationInputTokens": 0,
+      "stopSequence": null,
+      "iterations": null,
+      "container": null,
+      "contextManagement": null
+    },
+    "gateway": {
+      "routing": {
+        "originalModelId": "anthropic/claude-sonnet-4.6",
+        "resolvedProvider": "anthropic",
+        "resolvedProviderApiModelId": "claude-sonnet-4-6",
+        "fallbacksAvailable": [
+          "vertexAnthropic",
+          "bedrock"
+        ],
+        "planningReasoning": "System credentials planned for: anthropic, vertexAnthropic, bedrock. Total execution order: anthropic(system) → vertexAnthropic(system) → bedrock(system)",
+        "canonicalSlug": "anthropic/claude-sonnet-4.6",
+        "finalProvider": "anthropic",
+        "modelAttemptCount": 1,
+        "modelAttempts": [
+          {
+            "modelId": "anthropic:claude-sonnet-4-6",
+            "canonicalSlug": "anthropic/claude-sonnet-4.6",
+            "success": true,
+            "providerAttemptCount": 1,
+            "providerAttempts": [
+              {
+                "provider": "anthropic",
+                "internalModelId": "anthropic:claude-sonnet-4-6",
+                "providerApiModelId": "claude-sonnet-4-6",
+                "credentialType": "system",
+                "success": true,
+                "startTime": 207696.635243,
+                "endTime": 216179.397762,
+                "statusCode": 200,
+                "providerResponseId": "msg_01NsKxBasgL6P4ztNtCP3FFK"
+              }
+            ]
+          }
+        ],
+        "totalProviderAttemptCount": 1
+      },
+      "cost": "0.020553",
+      "marketCost": "0.020553",
+      "inferenceCost": "0.020553",
+      "inputInferenceCost": "0.015948",
+      "outputInferenceCost": "0.004605",
+      "enabledZeroDataRetention": false,
+      "enabledDisallowPromptTraining": false,
+      "generationId": "gen_01KP6F7GPAFKMVQ2MP4D2MQPNR"
+    }
+  },
+  "content": [
+    {
+      "type": "reasoning",
+      "text": "The diff adds a new `GatewayInfo` type and extracts authoritative billing/routing data from the AI SDK's `providerMetadata.gateway`, then surfaces it in the CLI diagnostics output (provider name, latency breakdown, authoritative cost with cross-check warning).",
+      "providerMetadata": {
+        "anthropic": {
+          "signature": "EsIDClsIDBgCKkD3LzFq8Uh9CAzKv3zXXnay9dvVEgvdPFJqezGjdFTvj1wiC/Owlho+nO2GaluaraHZCqaXxiK5DPQPrd1jj839MhFjbGF1ZGUtc29ubmV0LTQtNjgAEgyc6uNRFVSeyFZH9pQaDIRQ8BTsUDVp/0hJhSIwJ1x3a5JzdWfLEy0nC2Vsl8YkpqVnFYOZwwRvlkzEQrsCBe15R3rl4M4igU7w0c2+KpQCOYenc5bizbrZTTjFCjU5IAJI+dxrbwXWJYa5Hz+UMor7kLwXQ+FqySE0cdoG3pj15bJuU5AqrAs5PMGn+DZCmX7GPdDAuhnRj++giQRh0JZWdiUWXeZTyLmW2qJcNypaVQY1gTg2DDOHAsFZ72Sz8pIv0uVt0aLQRy0Vj6F7rsa0kxmENPCe0llU9p9d3drZLIdLRc3mAHRKyjkkEokd8BOu/fuZA3XGZV2uNo0lG3TVzuXPUq4t4X5SQJF+NCA9xEy4BG4s29vkaapPXztk/SQ2sYmO3B6X4FDTiu3J6bPkCDXGJ9EgNYXJegf6FOW1t0GrTTgK5TDPKjzwscczsCLpGCrFl36AOcb+b3qqiUcomauGGAE="
+        }
+      }
+    },
+    {
+      "type": "text",
+      "text": "feat(core): extract authoritative cost and latency from gateway metadata\n\nThe AI SDK embeds billing data (cost breakdown, routing, per-attempt\nlatencies) inside `result.providerMetadata.gateway` on the inline\nresponse, entirely undocumented. This commit surfaces that data:\n\n- New `GatewayInfo` type captures generation id, provider name,\n  authoritative cost (total + input/output), and server-measured\n  provider latency.\n- `summarizeDiff` now populates `SummarizeResult.gateway` by walking\n  `providerMetadata` defensively (all fields are untyped / stringly-typed\n  at the source).\n- CLI diagnostics updated to show the actual upstream provider when it\n  differs from the model id, split provider/wall-clock latency with\n  gateway+network overhead, and an authoritative vs. estimated cost line\n  with a ⚠ annotation when the two totals disagree by >1¢ or >5%."
+    }
+  ]
+}
